@@ -1,14 +1,17 @@
 {
   "type": "module",
-  "description": "A template for typescript dependency modules that run in a browser.",
+  "description": "An image component",
   "version": "0.0.0",
-  "main": "src/index.ts",
+  "main": "dist/index.ts",
   "scripts": {
     "lint": "standardx -v \"./**/*.ts\"",
-    "build-tests": "esbuild test/index.ts --bundle --format=cjs --keep-names > test/test-bundle.js",
+    "build-tests": "esbuild test/index.ts --bundle --format=cjs --keep-names > test/test-bundle.js && cd test && npm i",
     "test": "npm run lint && npm run build-tests && cat test/index.html | tape-run --input=html --static=test | tap-arc",
     "build-cjs": "esbuild src/*.ts --format=cjs --keep-names --outdir=./dist --out-extension:.js=.cjs",
-    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && tsc",
+    "build-esm": "esbuild src/*.ts --format=esm --keep-names --outdir=./dist --out-extension:.js=.js",
+    "build-tsx": "esbuild src/*.tsx --format=esm --keep-names --outdir=./dist --out-extension:.js=.jsx",
+    "build-cjsx": "esbuild src/*.tsx --format=cjs --keep-names --outdir=./dist --out-extension:.js=.cjsx",
+    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && npm run build-esm && npm run build-tsx && npm run build-cjsx",
     "preversion": "npm run lint",
     "postversion": "git push && git push --tags && npm publish",
     "prepublishOnly": "npm run build"
@@ -16,11 +19,14 @@
   "devDependencies": {
     "@typescript-eslint/parser": "^5.55.0",
     "esbuild": "^0.15.18",
+    "htm": "^3.1.1",
+    "preact": "^10.13.2",
     "standardx": "^7.0.0",
     "tap-arc": "^0.3.5",
     "tape-run": "^10.0.0",
     "tapzero": "^0.6.1",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.2",
+    "vite": "^4.3.2"
   },
   "exports": {
     ".": {
@@ -30,17 +36,16 @@
     "./*": {
       "import": [
         "./dist/*.js",
-        "./dist/*"
+        "./dist/*.jsx"
       ],
       "require": [
         "./dist/*.cjs",
-        "./dist/*"
+        "./dist/*.cjsx"
       ]
     }
   },
   "keywords": [
-    "template",
-    "typescript"
+    "image"
   ],
   "author": "nichoth <nichoth@gmail.com> (https://nichoth.com)",
   "license": "AGPL-3.0-or-later"

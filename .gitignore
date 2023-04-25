@@ -1,6 +1,4 @@
 node_modules
 bundle.js
 .DS_Store
-src/*.js
-test/*.js
 dist

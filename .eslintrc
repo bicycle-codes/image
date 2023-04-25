@@ -1,11 +1,12 @@
 {
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "requireConfigFile": false,
-    "babelOptions": {
-    }
+    "requireConfigFile": false
   },
   "rules": {
+    "react/jsx-indent" : ["error", 4],
+    "react/jsx-wrap-multilines": "off",
+    "react/jsx-closing-tag-location": "off",
     "no-multiple-empty-lines": [
       "error",
       {
