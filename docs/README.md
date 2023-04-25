@@ -3,13 +3,15 @@
 ## images
 see also
 
-* [next image component](https://github.com/vercel/next.js/blob/canary/docs/api-reference/next/image.md)
-
-I think this might be the source for the `next/image` component https://github.com/vercel/next.js/blob/641d419adac0d18c2c5d955333a645e72a4d509f/packages/next/src/client/image.tsx
+* [Image performance cheat sheet](https://twitter.com/Steve8708/status/1506281613746917394)
+* [Building an effective Image Component](https://developer.chrome.com/blog/image-component/)
+* [HTMLImageElement: decoding property](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/decoding)
 
 ------
 
-* [compiled many tips for image perf into this one cheat sheet](https://twitter.com/Steve8708/status/1506281613746917394)
+* [next image component](https://github.com/vercel/next.js/blob/canary/docs/api-reference/next/image.md)
+
+I think this might be the source for the `next/image` component https://github.com/vercel/next.js/blob/641d419adac0d18c2c5d955333a645e72a4d509f/packages/next/src/client/image.tsx
 
 ------
 
@@ -34,10 +36,42 @@ I think this might be the source for the `next/image` component https://github.c
 > WebP is supported on the latest versions of almost all major browsers today.
 
 
----------------------
+see [the table](https://www.smashingmagazine.com/2021/09/modern-image-formats-avif-webp/#summary)
 
-## package exports
+### summary
+> AVIF does check most of the boxes overall, and WebP has better support and offers better compression when compared to JPEG or PNG. As such, you should undoubtedly consider WebP support when optimizing images on your website. Evaluating AVIF if it meets your requirements and introducing it as a progressive enhancement could provide value as the format gets adopted across different browsers and platforms. 
 
-https://webpack.js.org/guides/package-exports/#alternatives
 
-> Instead of providing a single result, the package author may provide a list of results. In such a scenario this list is tried in order and the first valid result will be used.
+-----------------
+
+
+### [cloudinary](https://cloudinary.com/blog/how_to_adopt_avif_for_images_with_cloudinary)
+
+[Converting to another image format](https://cloudinary.com/documentation/javascript_image_transformations#converting_to_another_image_format)
+
+> There are three main ways to convert and deliver in another format:
+
+* Specify the image's public ID with the desired extension.
+* Explicitly set the desired format using the format action type of the delivery action.
+* Use auto format to instruct Cloudinary to deliver the image in the most optimized format for each browser that requests it.
+
+
+> Explicitly set the desired format using the format action type of the delivery action.
+
+```js
+ // Use the image with public ID, 'docs/shoes'.
+const myImage = cld.image('docs/shoes');
+
+// Set the format to GIF.
+myImage.format('gif');
+```
+
+> To let Cloudinary select the optimal format for each browser, set format to auto. For example, in Chrome, this image may deliver in .avif or .webp format (depending on your product environment setup):
+
+```js
+// Use the image with public ID, 'docs/shoes'.
+const myImage = cld.image('docs/shoes');
+
+// Request automatic format.
+myImage.format('auto');
+```
