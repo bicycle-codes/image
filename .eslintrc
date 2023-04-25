@@ -1,0 +1,21 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "requireConfigFile": false,
+    "babelOptions": {
+    }
+  },
+  "rules": {
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxEOF": 1
+      }
+    ],
+    "no-undef": "off",
+    "indent": [ "error", 4 ],
+    "comma-dangle": "off",
+    "no-multi-spaces": ["error", { "ignoreEOLComments": true }]
+  }
+}
