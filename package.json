@@ -10,6 +10,7 @@
   "version": "0.0.0",
   "main": "dist/index.ts",
   "scripts": {
+    "start": "npm run build && cd example && npm start",
     "lint": "standardx -v \"./**/*.ts\"",
     "build-tests": "esbuild test/index.ts --bundle --format=cjs --keep-names > test/test-bundle.js && cd test && npm i",
     "test": "npm run lint && npm run build-tests && cat test/index.html | tape-run --input=html --static=test | tap-arc",
@@ -63,6 +64,8 @@
   },
   "homepage": "https://github.com/nichoth/image#readme",
   "dependencies": {
-    "@cloudinary/url-gen": "^1.10.0"
+    "@cloudinary/url-gen": "^1.10.0",
+    "blurhash": "^2.0.5",
+    "canvas": "^2.11.2"
   }
 }
