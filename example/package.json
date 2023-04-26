@@ -1,6 +1,9 @@
 {
     "type": "module",
     "scripts": {
-        "start": "vite"
+        "start": "rm -rf ./node_modules && npm i && vite"
+    },
+    "dependencies": {
+        "@nichoth/image": "../"
     }
 }

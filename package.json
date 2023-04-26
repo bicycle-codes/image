@@ -1,4 +1,10 @@
 {
+  "name": "@nichoth/image",
+  "directories": {
+    "doc": "docs",
+    "example": "example",
+    "test": "test"
+  },
   "type": "module",
   "description": "An image component",
   "version": "0.0.0",
@@ -9,9 +15,8 @@
     "test": "npm run lint && npm run build-tests && cat test/index.html | tape-run --input=html --static=test | tap-arc",
     "build-cjs": "esbuild src/*.ts --format=cjs --keep-names --outdir=./dist --out-extension:.js=.cjs",
     "build-esm": "esbuild src/*.ts --format=esm --keep-names --outdir=./dist --out-extension:.js=.js",
-    "build-tsx": "esbuild src/*.tsx --format=esm --keep-names --outdir=./dist --out-extension:.js=.jsx",
-    "build-cjsx": "esbuild src/*.tsx --format=cjs --keep-names --outdir=./dist --out-extension:.js=.cjsx",
-    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && npm run build-esm && npm run build-tsx && npm run build-cjsx",
+    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && tsc",
+    "//build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && npm run build-esm",
     "preversion": "npm run lint",
     "postversion": "git push && git push --tags && npm publish",
     "prepublishOnly": "npm run build"
@@ -48,5 +53,16 @@
     "image"
   ],
   "author": "nichoth <nichoth@gmail.com> (https://nichoth.com)",
-  "license": "AGPL-3.0-or-later"
+  "license": "AGPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nichoth/image.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nichoth/image/issues"
+  },
+  "homepage": "https://github.com/nichoth/image#readme",
+  "dependencies": {
+    "@cloudinary/url-gen": "^1.10.0"
+  }
 }

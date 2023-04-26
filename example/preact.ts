@@ -1,14 +1,13 @@
 import { html } from 'htm/preact'
 import { render } from 'preact'
-import { Image } from '../src/preact.js'
+import { Image } from '../dist/preact.js'
 
 const Example = function () {
     return html`<div>
         <p>hello</p>
-        <${Image} />
+        <${Image} src="/100.jpg" />
     </div>`
 }
 
 const el = document.getElementById('root')
-console.log('hello', el)
 if (el) render(html`<${Example} />`, el)
