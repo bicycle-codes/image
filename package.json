@@ -10,17 +10,22 @@
   "version": "0.0.0",
   "main": "dist/index.ts",
   "scripts": {
-    "start": "npm run build && cd example && npm start",
+    "start": "npm run build && cd example && rm -rf ./node_modules && npm i && npm start",
     "lint": "standardx -v \"./**/*.ts\"",
     "build-tests": "esbuild test/index.ts --bundle --format=cjs --keep-names > test/test-bundle.js && cd test && npm i",
     "test": "npm run lint && npm run build-tests && cat test/index.html | tape-run --input=html --static=test | tap-arc",
     "build-cjs": "esbuild src/*.ts --format=cjs --keep-names --outdir=./dist --out-extension:.js=.cjs",
-    "build-esm": "esbuild src/*.ts --format=esm --keep-names --outdir=./dist --out-extension:.js=.js",
+    "build-esm": "esbuild src/**/*.ts --format=esm --keep-names --outdir=./dist --out-extension:.js=.js",
     "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && tsc",
     "//build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && npm run build-esm",
     "preversion": "npm run lint",
     "postversion": "git push && git push --tags && npm publish",
     "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@cloudinary/url-gen": "^1.10.0",
+    "blurhash": "^2.0.5",
+    "canvas": "^2.11.2"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^5.55.0",
@@ -32,6 +37,7 @@
     "tape-run": "^10.0.0",
     "tapzero": "^0.6.1",
     "typescript": "^5.0.2",
+    "typescript-lit-html-plugin": "^0.9.0",
     "vite": "^4.3.2"
   },
   "exports": {
@@ -41,13 +47,19 @@
     },
     "./*": {
       "import": [
-        "./dist/*.js",
-        "./dist/*.jsx"
+        "./dist/*.js"
       ],
       "require": [
-        "./dist/*.cjs",
-        "./dist/*.cjsx"
+        "./dist/*.cjs"
       ]
+    },
+    "./cloudinary": {
+      "import": "./dist/cloudinary/index.js",
+      "require": "./dist/cloudinary/index.cjs"
+    },
+    "./cloudinary/*": {
+      "import": "./dist/cloudinary/*.js",
+      "require": "./dist/cloudinary/*.cjs"
     }
   },
   "keywords": [
@@ -62,10 +74,5 @@
   "bugs": {
     "url": "https://github.com/nichoth/image/issues"
   },
-  "homepage": "https://github.com/nichoth/image#readme",
-  "dependencies": {
-    "@cloudinary/url-gen": "^1.10.0",
-    "blurhash": "^2.0.5",
-    "canvas": "^2.11.2"
-  }
+  "homepage": "https://github.com/nichoth/image#readme"
 }

@@ -1,5 +1,9 @@
 # images
 
+## links
+* [many tips for image perf into this one cheat sheet](https://twitter.com/Steve8708/status/1506281613746917394)
+* [avif has landed](https://jakearchibald.com/2020/avif-has-landed/)
+
 ## guide
 https://cloudinary.com/blog/for_developers_the_html_picture_element_explained
 
@@ -33,7 +37,7 @@ srcset="https://res.cloudinary.com/demo/image/upload/f_auto/q_auto/c_scale,w_256
 
 > the following means if the viewport is at least 50em wide, the image will be 50em wide. Otherwise, the image will be 100vw wide
 
-**This is like setting a max width on the image** A max of `50em` in this case. Since if the viewport is below `50em`, then the width will be `100vw`, and above `50em`, it has a fixed size of `50em`.
+**This is like setting a max width on the image** A max of `50em` in this case. Since if the viewport is below `50em`, then the width will be `100vw`, it has a fixed max size of `50em`.
 
 ```html
 sizes="(min-width: 50em) 50em, 100vw"
