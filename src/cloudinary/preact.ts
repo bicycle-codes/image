@@ -99,19 +99,18 @@ export const CloudinaryImg = function (config:{cloudName:string}):Components {
         useEffect(() => {
             console.log('placeholder', placeholder)
             if (!placeholder || !placeholder.current) return
-            // const blurry = placeholder.current.querySelector('img.blurry')
 
             // also start downloading the real image
             const imgLarge = new window.Image()
-            // imgLarge.src = placeholder.dataset.large
+            imgLarge.classList.add('sharp')
             imgLarge.src = (cld.image(filename)
                 .format('auto')
                 .quality('auto')
                 .resize(scale().width(800))
                 .toURL())
 
-            imgLarge.onload = () => imgLarge.classList.add('loaded')
             placeholder.current.appendChild(imgLarge)
+            imgLarge.onload = () => imgLarge.classList.add('loaded')
         }, [placeholder.current])
 
         const _class = props.class || className
