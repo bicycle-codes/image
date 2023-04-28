@@ -47,7 +47,7 @@ export const CloudinaryImg = function (config:{cloudName:string}):Components {
                 srcset: (cld.image(filename)
                     .format('auto')
                     .quality('auto')
-                    .resize(scale().width(600))
+                    .resize(scale().width(800))
                     .toURL())
             }),
 
@@ -92,10 +92,10 @@ export const CloudinaryImg = function (config:{cloudName:string}):Components {
 
     const ImageWithBlur:FunctionComponent<BlurProps> = function (props:BlurProps) {
         const { blurPlaceholder, filename, className } = props
+
         // should get a ref to the img component, b/c we need onload function
         const placeholder = useRef<HTMLDivElement>(null)
 
-        // component did mount
         useEffect(() => {
             console.log('placeholder', placeholder)
             if (!placeholder || !placeholder.current) return
