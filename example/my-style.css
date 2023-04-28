@@ -1,0 +1,15 @@
+.placeholder {
+    display: inline-block;
+    height: 50vw;
+    width: 50vw;
+}
+
+.blur-test {
+    & img {
+        object-fit: cover;
+    }
+
+    & img.blurry {
+        
+    }
+}

@@ -1,24 +1,32 @@
 import { Cloudinary } from '@cloudinary/url-gen'
 import { scale } from '@cloudinary/url-gen/actions/resize'
 import { h, FunctionComponent } from 'preact'
+import { useRef, useEffect } from 'preact/hooks'
 
 interface Props {
     src:string,
     filename:string,
     alt:string,
     loading?:'eager'|'lazy',
-    fetchpriority?:string
+    fetchpriority?:string,
+    class?:string,
+    className?:string
+}
+
+interface BlurProps extends Props {
+    blurPlaceholder:string
 }
 
 interface Components {
-    Image: FunctionComponent<Props>
+    Image: FunctionComponent<Props>,
+    ImageWithBlur: FunctionComponent<BlurProps>
 }
 
 /**
  * This is a factory function that returns an object like { Image },
  * where `Image` is a preact component
- * @param config {cloudName:string} The cloudName for Cloudinary
- * @returns { Image:FunctionComponent }
+ * @param config {{ cloudName:string }} The cloudName for Cloudinary
+ * @returns { { Image:FunctionComponent } }
  */
 export const CloudinaryImg = function (config:{cloudName:string}):Components {
     const { cloudName } = config
@@ -29,9 +37,9 @@ export const CloudinaryImg = function (config:{cloudName:string}):Components {
     })
 
     const Image:FunctionComponent<Props> = function (props:Props) {
-        const { filename, alt, loading, fetchpriority } = props
+        const { filename, alt, loading, fetchpriority, className } = props
 
-        return h('picture', { class: 'hello' }, [
+        return h('picture', { class: props.class || className }, [
             // we get the first source that matches the `media` attribute,
             // so we *need to* set a `max-width` in the media query
             h('source', {
@@ -50,7 +58,7 @@ export const CloudinaryImg = function (config:{cloudName:string}):Components {
                 media: '(min-width: 800px) and (max-width: 1599px)',
                 // dont use `type` here because we have `format(auto)`
                 // type: 'image/avif',
-                sizes: '100vw',
+
                 // [The srcset attribute](https://cloudinary.com/documentation/responsive_html#the_srcset_attribute)
                 // `srcset` can be a comma separated list of URLs
                 // example: 'https://res.cloudinary.com/demo/image/c_scale,w_800/docs/guitar-man.jpg 800w, https://res.cloudinary.com/demo/image/upload/c_scale,w_1600/docs/guitar-man.jpg 1600w',
@@ -59,7 +67,7 @@ export const CloudinaryImg = function (config:{cloudName:string}):Components {
                     .format('auto')
                     .quality('auto')
                     .resize(scale().width(1300))
-                    .toURL() + ' 1300w')
+                    .toURL())
             }),
 
             h('source', {
@@ -82,7 +90,44 @@ export const CloudinaryImg = function (config:{cloudName:string}):Components {
         ])
     }
 
-    return { Image }
+    const ImageWithBlur:FunctionComponent<BlurProps> = function (props:BlurProps) {
+        const { blurPlaceholder, filename, className } = props
+        // should get a ref to the img component, b/c we need onload function
+        const placeholder = useRef<HTMLDivElement>(null)
+
+        // component did mount
+        useEffect(() => {
+            console.log('placeholder', placeholder)
+            if (!placeholder || !placeholder.current) return
+            // const blurry = placeholder.current.querySelector('img.blurry')
+
+            // also start downloading the real image
+            const imgLarge = new window.Image()
+            // imgLarge.src = placeholder.dataset.large
+            imgLarge.src = (cld.image(filename)
+                .format('auto')
+                .quality('auto')
+                .resize(scale().width(800))
+                .toURL())
+
+            imgLarge.onload = () => imgLarge.classList.add('loaded')
+            placeholder.current.appendChild(imgLarge)
+        }, [placeholder.current])
+
+        const _class = props.class || className
+
+        return h('div', {
+            class: 'placeholder' + (_class ? ` ${_class}` : ''),
+            ref: placeholder
+        }, [
+            h('img', {
+                class: 'blurry loaded',
+                src: blurPlaceholder
+            })
+        ])
+    }
+
+    return { Image, ImageWithBlur }
 }
 
 export default CloudinaryImg

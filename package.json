@@ -16,7 +16,8 @@
     "test": "npm run lint && npm run build-tests && cat test/index.html | tape-run --input=html --static=test | tap-arc",
     "build-cjs": "esbuild src/*.ts --format=cjs --keep-names --outdir=./dist --out-extension:.js=.cjs",
     "build-esm": "esbuild src/**/*.ts --format=esm --keep-names --outdir=./dist --out-extension:.js=.js",
-    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && tsc",
+    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && tsc && npm run cp-css",
+    "cp-css": "cp ./src/*.css ./dist",
     "//build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && npm run build-esm",
     "preversion": "npm run lint",
     "postversion": "git push && git push --tags && npm publish",
@@ -31,6 +32,8 @@
     "@typescript-eslint/parser": "^5.55.0",
     "esbuild": "^0.15.18",
     "htm": "^3.1.1",
+    "postcss-import": "^15.1.0",
+    "postcss-nesting": "^11.2.2",
     "preact": "^10.13.2",
     "standardx": "^7.0.0",
     "tap-arc": "^0.3.5",
@@ -47,7 +50,8 @@
     },
     "./*": {
       "import": [
-        "./dist/*.js"
+        "./dist/*.js",
+        "./dist/*"
       ],
       "require": [
         "./dist/*.cjs"
