@@ -18,7 +18,8 @@ export const CloudinaryTonic = function ({ cloudName }) {
     /**
      * A `tonic` component for images.
      * Be sure to pass an `id` in HTML to the component. Also takes a prop
-     * `blurPlaceholder`, which is a base64 string to use inline as src
+     * `blurPlaceholder`, which is a base64 string to use inline as src,
+     * and a prop `filename` -- the filename to fetch
      * @returns {HTMLElement} HTML element created with `tonic`
      */
     class BlurredImage extends Tonic {
@@ -59,7 +60,7 @@ export const CloudinaryTonic = function ({ cloudName }) {
             return this.html`<div
                 class=${('placeholder' + (_class ? ` ${_class}` : ''))}
             >
-                <img src=${blurplaceholder} />
+                <img class="blurry" src=${blurplaceholder} />
             </div>`
         }
     }

@@ -17,22 +17,17 @@
     height: 100%;
 }
 
-img.sharp {
-    opacity: 0;
-}
-
 img.sharp.loaded {
-    opacity: 1;
     animation: sharpen 0.6s both;
 }
 
 .blurry {
-    filter: blur(20px);
+    filter: blur(30px);
 }
 
 @keyframes sharpen {
     from {
-        filter: blur(20px);
+        filter: blur(30px);
     }
     to {
         filter: blur(0px)
