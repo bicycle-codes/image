@@ -15,8 +15,8 @@ const args = yargs(hideBin(process.argv))
 
 const cloudName = args._[0]
 const filename = args._[1]
-const uri = getImg(cloudName, filename)
-process.stdout.write(uri)
+const uri = await getImg(cloudName, filename)
+process.stdout.write(uri + '\n')
 
 async function getImg (cloudName, filename) {
     const cld = new Cloudinary({
