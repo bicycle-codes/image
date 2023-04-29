@@ -1,14 +1,12 @@
 {
   "name": "@nichoth/image",
-  "directories": {
-    "doc": "docs",
-    "example": "example",
-    "test": "test"
-  },
-  "type": "module",
   "description": "An image component",
   "version": "0.0.0",
+  "type": "module",
   "main": "dist/index.ts",
+  "bin": {
+    "imageToString": "./bin/to-string.js"
+  },
   "scripts": {
     "start": "npm run build && cd example && rm -rf ./node_modules && npm i && npm start",
     "lint": "standardx -v \"./**/*.ts\"",
@@ -23,10 +21,16 @@
     "postversion": "git push && git push --tags && npm publish",
     "prepublishOnly": "npm run build"
   },
+  "directories": {
+    "doc": "docs",
+    "example": "example",
+    "test": "test"
+  },
   "dependencies": {
     "@cloudinary/url-gen": "^1.10.0",
     "blurhash": "^2.0.5",
-    "canvas": "^2.11.2"
+    "canvas": "^2.11.2",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^5.55.0",
