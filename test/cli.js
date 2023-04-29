@@ -16,5 +16,6 @@ test('Use the CLI', async t => {
 test('Use the CLI with a local file', async t => {
     const localFilePath = path.join(__dirname, '..', 'example', '100.jpg')
     const base64 = execSync(cliPath + ' ' + localFilePath)
+
     t.ok(base64.includes('data:image/jpeg;'), 'should return base64 string')
 })
