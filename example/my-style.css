@@ -8,8 +8,4 @@
     & img {
         object-fit: cover;
     }
-
-    & img.blurry {
-        
-    }
 }

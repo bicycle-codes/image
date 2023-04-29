@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/index.ts",
   "bin": {
-    "image": "./bin/to-string.js"
+    "stringify": "./bin/to-string.js"
   },
   "scripts": {
     "start": "npm run build && cd example && rm -rf ./node_modules && npm i && npm start",
@@ -30,6 +30,8 @@
     "@socketsupply/tonic": "^15.1.1",
     "blurhash": "^2.0.5",
     "canvas": "^2.11.2",
+    "file-type": "^18.3.0",
+    "sharp": "^0.32.1",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
