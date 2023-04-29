@@ -5,6 +5,7 @@
   },
   "rules": {
     "react/jsx-indent" : ["error", 4],
+    "operator-linebreak": "off",
     "react/jsx-wrap-multilines": "off",
     "react/jsx-closing-tag-location": "off",
     "no-multiple-empty-lines": [
@@ -15,7 +16,7 @@
       }
     ],
     "no-undef": "off",
-    "indent": [ "error", 4 ],
+    "indent": ["error", 4, { "ignoredNodes": ["TemplateLiteral *"] }],
     "comma-dangle": "off",
     "no-multi-spaces": ["error", { "ignoreEOLComments": true }]
   }

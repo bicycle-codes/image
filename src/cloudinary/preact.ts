@@ -98,7 +98,7 @@ export const CloudinaryImg = function (config:{cloudName:string}):Components {
 
         useEffect(() => {
             console.log('placeholder', placeholder)
-            if (!placeholder || !placeholder.current) return
+            if (!placeholder.current) return
 
             // also start downloading the real image
             const imgLarge = new window.Image()
