@@ -20,8 +20,7 @@ async function get () {
 
     const response = await fetch(url)
     const mime = response.headers.get('Content-Type')
-    const blob = await response.blob()
-    const arrayBuffer = await blob.arrayBuffer()
+    const arrayBuffer = await response.arrayBuffer()
     const base64 = Buffer.from(arrayBuffer).toString('base64')
     console.log('*mime*', mime)
     // => *mime* image/jpeg

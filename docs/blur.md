@@ -81,6 +81,7 @@ if (bigSrc) {
 ## example with `img` tags
 ************
 
+**see thisvvv**
 [example using img elements, not background](https://blog.yipl.com.np/keep-on-hacking-frontend-quicktips-3-medium-site-like-image-loading-blur-effect-a7fe052c44f6)
 
 they just append the new image to the dom:
