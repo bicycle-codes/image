@@ -13,7 +13,8 @@
     "test": "npm run lint && node test/cli.js | tap-arc",
     "build-cjs": "esbuild src/**/*.ts --format=cjs --keep-names --outdir=./dist --out-extension:.js=.cjs",
     "build-esm": "esbuild src/**/*.ts --format=esm --keep-names --outdir=./dist --out-extension:.js=.js",
-    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && tsc && npm run cp-css",
+    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && tsc && npm run cp-css && npm run build-tonic",
+    "build-tonic": "cp ./src/cloudinary/tonic.js ./dist/cloudinary",
     "cp-css": "cp ./src/*.css ./dist",
     "preversion": "npm run lint",
     "postversion": "git push && git push --tags && npm publish",
@@ -26,6 +27,7 @@
   },
   "dependencies": {
     "@cloudinary/url-gen": "^1.10.0",
+    "@socketsupply/tonic": "^15.1.1",
     "blurhash": "^2.0.5",
     "canvas": "^2.11.2",
     "yargs": "^17.7.2"
