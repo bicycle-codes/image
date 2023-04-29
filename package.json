@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/index.ts",
   "bin": {
-    "imageToString": "./bin/to-string.js"
+    "image": "./bin/to-string.js"
   },
   "scripts": {
     "start": "npm run build && cd example && rm -rf ./node_modules && npm i && npm start",
