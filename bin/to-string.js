@@ -7,7 +7,6 @@ import { hideBin } from 'yargs/helpers'
 const args = yargs(hideBin(process.argv))
     .demandCommand(2)
     .command('cloudName filename', 'the cloud name and filename to use')
-    // .command('filename', 'the filename to fetch')
     .example('`image name my-file.jpg`', 'Use the the cloudinary namespace `name`' +
         ' to convert `my-file.jpg` to a small base64 string')
     .usage('Usage: image <cloudName> <filename>')
@@ -18,7 +17,7 @@ const filename = args._[1]
 const uri = await getImg(cloudName, filename)
 process.stdout.write(uri + '\n')
 
-async function getImg (cloudName, filename) {
+export async function getImg (cloudName, filename) {
     const cld = new Cloudinary({
         cloud: { cloudName },
         url: { secure: true }
