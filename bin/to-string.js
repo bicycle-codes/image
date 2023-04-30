@@ -12,9 +12,10 @@ import { fileTypeFromFile } from 'file-type'
 const args = yargs(hideBin(process.argv))
     .demandCommand(1)
     .command('cloudName filename', 'the cloud name and filename to use')
-    .example('`image name my-file.jpg`', 'Use the the cloudinary namespace `name`' +
+    .command('filename', 'the local filename to read')
+    .example('`npx image name my-file.jpg`', 'Use the the cloudinary namespace `name`' +
         ' to convert `my-file.jpg` to a small base64 string')
-    .example('`image my-fiile.jpg`',
+    .example('`npx image my-fiile.jpg`',
         'Create a small base64 string from a local file')
     .usage('Usage: image <cloudName> <filename>')
     .argv
@@ -52,7 +53,7 @@ export async function getImgCloudinary (cloudName, filename) {
     const url = (cld.image(filename)
         .format('auto')
         .quality('auto')
-        .resize(scale().width(50))
+        .resize(scale().width(40))
         .toURL())
 
     const response = await fetch(url)

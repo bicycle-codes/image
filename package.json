@@ -13,7 +13,8 @@
     "test": "npm run lint && node test/cli.js | tap-arc",
     "build-cjs": "esbuild src/**/*.ts --format=cjs --keep-names --outdir=./dist --out-extension:.js=.cjs",
     "build-esm": "esbuild src/**/*.ts --format=esm --keep-names --outdir=./dist --out-extension:.js=.js",
-    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && tsc && npm run cp-css && npm run build-tonic",
+    "build-bin": "mkdir -p ./dist/bin && rm -rf ./dist/bin/* && cp ./bin/to-string.js ./dist/bin",
+    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && tsc && npm run cp-css && npm run build-tonic && npm run build-bin",
     "build-tonic": "cp ./src/cloudinary/tonic.js ./dist/cloudinary",
     "cp-css": "cp ./src/*.css ./dist",
     "preversion": "npm run lint",
@@ -63,6 +64,10 @@
         "./dist/*.cjs"
       ]
     },
+    "./bin/*": {
+      "import": "./dist/bin/*.js",
+      "require": "./dist/bin/*.cjs"
+    },
     "./cloudinary": {
       "import": "./dist/cloudinary/index.js",
       "require": "./dist/cloudinary/index.cjs"
@@ -73,7 +78,12 @@
     }
   },
   "keywords": [
-    "image"
+    "image",
+    "base64",
+    "cloudinary",
+    "picture",
+    "tonic",
+    "preact"
   ],
   "author": "nichoth <nichoth@gmail.com> (https://nichoth.com)",
   "license": "AGPL-3.0-or-later",

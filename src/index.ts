@@ -1,3 +1,7 @@
-export function example ():void {
-    console.log('hello')
+import { Attrs } from './attributes'
+
+export function html (props:Attrs) {
+
 }
+
+export default html

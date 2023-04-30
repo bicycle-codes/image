@@ -4,7 +4,6 @@ import { h, FunctionComponent } from 'preact'
 import { useRef, useEffect } from 'preact/hooks'
 
 interface Props {
-    src:string,
     filename:string,
     alt:string,
     loading?:'eager'|'lazy',
@@ -55,7 +54,7 @@ export const CloudinaryImg = function (config:{cloudName:string}):Components {
                 // a `media` attribute specifies the *minimum width* from
                 // which to display one of the images given in the `srcset`
                 // attribute
-                media: '(min-width: 800px) and (max-width: 1599px)',
+                media: '(min-width: 800px) and (max-width: 1299px)',
                 // dont use `type` here because we have `format(auto)`
                 // type: 'image/avif',
 
@@ -71,7 +70,7 @@ export const CloudinaryImg = function (config:{cloudName:string}):Components {
             }),
 
             h('source', {
-                media: '(min-width: 1600px)',
+                media: '(min-width: 1300px)',
                 srcset: cld.image(filename)
                     .format('auto')
                     .quality('auto')
