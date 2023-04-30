@@ -6,11 +6,8 @@ We can use the ["Blur Up" technique](https://css-tricks.com/the-blur-up-techniqu
 
 See the next section, [base64 placeholders](#base64-placeholders) for a way to generate the small base64 image.
 
-----------------------------------
 
 ## examples
-
-----------------------------------
 
 -------------------------------------------------------
 

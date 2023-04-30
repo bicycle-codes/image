@@ -18,7 +18,7 @@ interface BlurProps extends Props {
 
 interface Components {
     Image: FunctionComponent<Props>,
-    ImageWithBlur: FunctionComponent<BlurProps>
+    BlurredImage: FunctionComponent<BlurProps>
 }
 
 /**
@@ -89,7 +89,7 @@ export const CloudinaryImg = function (config:{cloudName:string}):Components {
         ])
     }
 
-    const ImageWithBlur:FunctionComponent<BlurProps> = function (props:BlurProps) {
+    const BlurredImage:FunctionComponent<BlurProps> = function (props:BlurProps) {
         const { blurPlaceholder, filename, className } = props
 
         const placeholder = useRef<HTMLDivElement>(null)
@@ -124,7 +124,7 @@ export const CloudinaryImg = function (config:{cloudName:string}):Components {
         ])
     }
 
-    return { Image, ImageWithBlur }
+    return { Image, BlurredImage }
 }
 
 export default CloudinaryImg
