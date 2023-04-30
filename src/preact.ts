@@ -5,74 +5,61 @@ interface Props {
     filename:string,
     alt:string,
     loading?:'eager'|'lazy',
-    sizes?:number[],  // array of integers in ascending order
+    // array of integers in descending order
+    sizes?:number[],
     fetchpriority?:string,
     class?:string,
     className?:string,
-    decoding:'sync'|'async'|'auto'
+    decoding?:'sync'|'async'|'auto'
 }
 
-// pass an array of sizes like [400, 800, 1600]
+// pass an array of sizes like [1600, 800, 400]
+// this is an array of available sizes of the image
 export const Image:FunctionComponent<Props> = function (config:Props) {
     const { decoding, filename, alt, loading, fetchpriority,
         className } = config
-    let sizes = config.sizes
+    const sizes = config.sizes || []
 
     const fileParts = filename.split('.')
 
-    // sizes = sizes || [800, 1300]
-    sizes = sizes || []
+    // sizes = sizes || [1300, 800]
     const lastSize = sizes.pop()
-    const firstSize = sizes.shift() as number
+    const firstSize = sizes.shift()
 
     const sources = sizes.length ? (
-        [
+        ([
+            // the biggest one
             h('source', {
-                media: `(min-width: 1px) and (max-width: ${firstSize - 1})`,
-                srcset: fileParts[0] + `-${firstSize}` + fileParts[1]
+                media: `(min-width: ${firstSize}px)`,
+                srcset: filename
             })
-        ].concat(sizes.map((size, i) => {
+        ]).concat(sizes.map((size) => {
             return h('source', {
-                media: `(min-width: ${size}px) and (max-width: ${sizes[i + 1] - 1})`,
-                srcset: fileParts[0] + `-${size}` + fileParts[1]
+                // anything greater than `size` and smaller than `firstSize`
+                media: `(min-width: ${size}px)`,
+                // must include a `sizes` if you include the last part,
+                // the width unit: `srcset: file.jpg 600w`
+                srcset: (fileParts[0] + `-${size}` + `.${fileParts[1]}`)
             })
         })).concat([
+            // the smallest one
             h('source', {
-                media: `min-width: ${sizes[1]}`
+                media: `min-width: ${lastSize}px`,
+                srcset: fileParts[0] + `-${lastSize}` + `.${fileParts[1]}`
+            }),
+
+            h('img', {
+                src: filename,
+                alt,
+                decoding: decoding || 'auto',
+                loading: loading || 'lazy',
+                fetchpriority: fetchpriority || 'low'
             })
-        ])
-    ) :
+        ])) :
+
         getDefaultSources(config)
 
-    return h('picture', { class: config.class || className }, sources.concat([
-        h('img', {
-            alt,
-            src: filename,
-            decoding: decoding || 'auto',
-            loading: loading || 'lazy',
-            fetchpriority: fetchpriority || 'low'
-        })
-    ]))
-
-    // return h('picture', { class: config.class || className }, sizes.map(size => {
-    //     return h('source', {
-    //         media: `(min-width: 1px) and (max-width: ${firstSize - 1})`,
-    //         srcset: fileParts[0] + `-${size}` + fileParts[1]
-    //     })
-    // }).concat([
-    //     h('source', {
-    //         media: `(${lastSize}px)`
-    //     }),
-
-    //     h('img', {
-    //         alt,
-    //         src: filename,
-    //         decoding: decoding || 'auto',
-    //         loading: loading || 'lazy',
-    //         fetchpriority: fetchpriority || 'low'
-    //     })
-    // ]))
-
+    return h('picture', { class: config.class || className }, sources)
 }
 
 interface BlurProps extends Props {
@@ -114,25 +101,37 @@ export const BlurredImage:FunctionComponent<BlurProps> = function (props:BlurPro
 
 function getDefaultSources (config:Props) {
     const { decoding, filename, alt, loading, fetchpriority } = config
+    const fileParts = filename.split('.')
+    const ext = fileParts.pop()
+    const noExt = fileParts.join('.')
 
     return [
+        // 1025+
         h('source', {
-            media: '(min-width: 1px) and (max-width: 799px)',
-            srcset: (filename)
-        }),
-
-        h('source', {
-            media: '(min-width: 800px) and (max-width: 1299px)',
-            srcset: (filename)
-        }),
-
-        h('source', {
-            media: '(min-width: 1300px)',
+            media: '(min-width: 1025px)',
             srcset: filename
+        }),
+
+        // 769 - 1024
+        h('source', {
+            media: '(min-width: 769px)',
+            srcset: `${noExt}-1024.${ext}`
+        }),
+
+        h('source', {
+            // 481 - 768
+            media: '(min-width: 481px)',
+            srcset: `${noExt}-768.${ext}`
+        }),
+
+        h('source', {
+            // anything 480 or less
+            srcset: `${noExt}-480.${ext}`
         }),
 
         h('img', {
             alt,
+            // full resolution
             src: filename,
             decoding: decoding || 'auto',
             loading: loading || 'lazy',

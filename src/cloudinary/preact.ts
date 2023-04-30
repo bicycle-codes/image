@@ -9,7 +9,8 @@ interface Props {
     loading?:'eager'|'lazy',
     fetchpriority?:string,
     class?:string,
-    className?:string
+    className?:string,
+    decoding?:'sync'|'async'
 }
 
 interface BlurProps extends Props {
@@ -36,25 +37,28 @@ export const CloudinaryImg = function (config:{cloudName:string}):Components {
     })
 
     const Image:FunctionComponent<Props> = function (props:Props) {
-        const { filename, alt, loading, fetchpriority, className } = props
+        const { decoding, filename, alt, loading, fetchpriority,
+            className } = props
 
         return h('picture', { class: props.class || className }, [
             // we get the first source that matches the `media` attribute,
-            // so we *need to* set a `max-width` in the media query
             h('source', {
-                media: '(min-width: 200px) and (max-width: 799px)',
-                srcset: (cld.image(filename)
+                // 1025+
+                media: '(min-width: 1025px)',
+                srcset: cld.image(filename)
                     .format('auto')
                     .quality('auto')
-                    .resize(scale().width(800))
-                    .toURL())
+                    // what's a big resolution that is appropriate for anyting?
+                    .resize(scale().width(2000))
+                    .toURL()
             }),
 
+            // 769 - 1024
             h('source', {
                 // a `media` attribute specifies the *minimum width* from
                 // which to display one of the images given in the `srcset`
                 // attribute
-                media: '(min-width: 800px) and (max-width: 1299px)',
+                media: '(min-width: 769px)',
                 // dont use `type` here because we have `format(auto)`
                 // type: 'image/avif',
 
@@ -65,17 +69,27 @@ export const CloudinaryImg = function (config:{cloudName:string}):Components {
                     // this is for in between the media of 800 and 1600 px
                     .format('auto')
                     .quality('auto')
-                    .resize(scale().width(1300))
+                    .resize(scale().width(1024))
                     .toURL())
             }),
 
             h('source', {
-                media: '(min-width: 1300px)',
-                srcset: cld.image(filename)
+                // 481 - 768
+                media: '(min-width: 481px)',
+                srcset: (cld.image(filename)
                     .format('auto')
                     .quality('auto')
-                    .resize(scale().width(1600))
-                    .toURL()
+                    .resize(scale().width(768))
+                    .toURL())
+            }),
+
+            h('source', {
+                // anything 480 or less
+                srcset: (cld.image(filename)
+                    .format('auto')
+                    .quality('auto')
+                    .resize(scale().width(480))
+                    .toURL())
             }),
 
             h('img', {
@@ -84,6 +98,7 @@ export const CloudinaryImg = function (config:{cloudName:string}):Components {
                     .format('auto')
                     .toURL(),
                 loading: loading || 'lazy',
+                decoding: decoding || 'auto',
                 fetchpriority: fetchpriority || 'low'
             })
         ])
