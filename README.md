@@ -1,11 +1,15 @@
 # image
 Create responsive `img` tags, with a `srcset` property that allows browsers to download the best size image.
 
+See this great article for more information about images -- [A Guide to the Responsive Images Syntax in HTML](https://css-tricks.com/a-guide-to-the-responsive-images-syntax-in-html/#using-srcset)
+
 Also includes tools to help with the ["Blur Up" technique](https://css-tricks.com/the-blur-up-technique-for-loading-background-images/), which means creating a nice blurred placeholder image while a high resolution image downloads, then switching them out, so the high res image is visible when it's ready
 
 See [the section on the CLI]() for info on creating base64 strings of images.
 
-## example
+## examples
+
+## preact
 
 ### preact + cloudinary
 Create an `<img>` element with a `srcset` attribute with relevant image sources.
@@ -74,6 +78,9 @@ const Example = function () {
 ### preact + local files
 Create an `img` tag that links to locally hosted files. See [the CLI section]() for info on creating images of different sizes.
 
+**note**
+This uses a naming convention for image files. If you are dealing with a file `my-file.jpg`, then alternate resolutions should be named like `my-file-400.jpg`, `my-file-800.jpg`, etc, for versions that are `400` and `800` px wide.
+
 ```js
 import { html } from 'htm/preact'
 import { render } from 'preact'
@@ -105,10 +112,12 @@ const Example = function () {
 render(html`<${Example} />`, document.getElementById('root'))
 ```
 
+----------------------
 
+## tonic
 
 ### tonic + cloudinary
-Create a [tonic](https://tonicframework.dev/) component for an `img` tag with a good `srcset` attribute.
+Create a [tonic](https://tonicframework.dev/) component for an `img` tag with a good defualt `srcset` attribute.
 
 ```js
 ```
