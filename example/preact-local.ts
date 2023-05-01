@@ -19,7 +19,7 @@ const Example = function () {
 
         <p>blurry image</p>
         <${BlurredImage} filename=${'/100.jpg'} class=${'blur-test'}
-            blurPlaceholder=${placeholderImg}
+            blurPlaceholder=${placeholderImg} sizes=${['50vw']}
         />
     </div>`
 }

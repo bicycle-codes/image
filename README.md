@@ -1,4 +1,125 @@
 # image
+Create responsive `img` tags, with a `srcset` property that allows browsers to download the best size image.
+
+Also includes tools to help with the ["Blur Up" technique](https://css-tricks.com/the-blur-up-technique-for-loading-background-images/), which means creating a nice blurred placeholder image while a high resolution image downloads, then switching them out, so the high res image is visible when it's ready
+
+See [the section on the CLI]() for info on creating base64 strings of images.
+
+## example
+
+### preact + cloudinary
+Create an `<img>` element with a `srcset` attribute with relevant image sources.
+
+```ts
+import { html } from 'htm/preact'
+import { render } from 'preact'
+import { CloudinaryImg } from '@nichoth/image/cloudinary/preact'
+import '@nichoth/image/style.css'
+import './my-style.css'
+
+//
+// create an image tag with a good default `srcset` attribute
+//
+const { Image } = CloudinaryImg({ cloudName: 'nichoth' })
+
+const Example = function () {
+    return html`<div>
+        <p>image</p>
+        <${Image} filename=${'testing'} class=${'my-image-test'}
+            sizes=${['50vw']}
+        />
+    </div>`
+}
+
+//
+// or pass in a custom `srcset` as an array of image widths
+//
+const CustomSrc = function () {
+    return html`<${Image} filename=${'testing'} class=${'my-image-test'}
+        sizes=${['50vw']} srcset=${[300, 600, 1000]}`
+}
+
+render(html`<${Example} />`, document.getElementById('root'))
+```
+
+
+### preact + cloudinary -- blur up image
+Create an image with a *blur up* placeholder.
+
+```js
+import { html } from 'htm/preact'
+import { render } from 'preact'
+import { CloudinaryImage } from '@nichoth/image/cloudinary/preact'
+import '@nichoth/image/css'
+import './my-style.css'
+
+const { BlurredImage } = CloudinaryImage({ cloudName: 'nichoth' })
+const placeholderImg = 'data:image/jpeg;base64,/9j/4AAQSkZJ...'
+
+//
+// create using the default srcset
+//
+const Example = function () {
+    return html`<${BlurredImage} filename=${'testing'} class=${'blur-test'}
+        blurPlaceholder=${placeholderImg}
+        sizes=${['50vw']}
+    />`
+}
+
+// or pass in a custom srcset:
+// srcset=${[300, 600, ...]}
+```
+
+
+### preact + local files
+Create an `img` tag that links to locally hosted files. See [the CLI section]() for info on creating images of different sizes.
+
+```js
+import { html } from 'htm/preact'
+import { render } from 'preact'
+import { Image, BlurredImage } from '@nichoth/image/preact'
+import '@nichoth/image/style.css'
+import './my-style.css'
+
+const placeholderImg = 'data:image/jpeg;base64,/9j/4AAQSkZJ...'
+
+const Example = function () {
+    return html`<div>
+        <p>hello</p>
+
+        <p>non blurry image</p>
+        <div class="non-blurry-wrapper">
+            <${Image} filename=${'/100.jpg'} class=${'non-blurry-image'}
+                sizes=${['50vw']}
+            />
+        </div>
+
+        <p>blurry image</p>
+        <${BlurredImage} filename=${'/100.jpg'} class=${'blur-test'}
+            blurPlaceholder=${placeholderImg}
+            sizes=${['50vw']}
+        />
+    </div>`
+}
+
+render(html`<${Example} />`, document.getElementById('root'))
+```
+
+
+
+### tonic + cloudinary
+Create a [tonic](https://tonicframework.dev/) component for an `img` tag with a good `srcset` attribute.
+
+```js
+```
+
+### tonic + local files
+
+
+
+
+
+# image
 Use images with the new `<picture>` element, or create a fancy blurred placeholder image.
 
 ## Blur Up images

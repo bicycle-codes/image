@@ -2,12 +2,13 @@
 import { Cloudinary } from '@cloudinary/url-gen'
 import { scale } from '@cloudinary/url-gen/actions/resize'
 import Tonic from '@socketsupply/tonic'
+import { CloudinarySrcset } from './srcset.js'
 
 /**
  * This is a factory function that returns an object like { Image },
  * where `Image` is a preact component
  * @param config {{ cloudName:string }} The cloudName for Cloudinary
- * @returns { { BlurredImage } } Tonic components
+ * @returns { { BlurredImage, Image } } Tonic components
  */
 export const CloudinaryTonic = function ({ cloudName }) {
     const cld = new Cloudinary({
@@ -29,25 +30,29 @@ export const CloudinaryTonic = function ({ cloudName }) {
             imgLarge.classList.add('sharp')
             this.state = { blurry: true, imgLarge }
 
-            console.log('**this.props**', this.props)
-
             imgLarge.onload = async () => {
                 this.state.blurry = false
                 await this.reRender()
                 const placeholder = this.querySelector('.placeholder')
                 imgLarge.classList.add('loaded')
+                console.log('**img large**', imgLarge)
                 // @ts-ignore
                 placeholder.appendChild(imgLarge)
             }
         }
 
         getImg () {
-            const { filename } = this.props
+            const { filename, maxwidth, sizes } = this.props
             const { imgLarge } = this.state
+            const { defaultSrcset } = CloudinarySrcset(cld)
+            const srcset = defaultSrcset(filename)
+
+            imgLarge.setAttribute('srcset', srcset)
+            imgLarge.setAttribute('sizes', sizes)
             imgLarge.src = (cld.image(filename)
                 .format('auto')
                 .quality('auto')
-                .resize(scale().width(800))
+                .resize(scale().width(maxwidth))
                 .toURL())
         }
 
@@ -62,10 +67,25 @@ export const CloudinaryTonic = function ({ cloudName }) {
             return this.html`<div
                 class=${('placeholder' + (_class ? ` ${_class}` : ''))}
             >
+                <img class="blurry" src=${blurplaceholder}
+                    srcset=${[]}
+                />
+            </div>`
+        }
+    }
+
+    class Image extends Tonic {
+        render () {
+            const { blurplaceholder, className } = this.props
+            const _class = (this.props.class || className)
+
+            return this.html`<div
+                class=${('placeholder' + (_class ? ` ${_class}` : ''))}
+            >
                 <img class="blurry" src=${blurplaceholder} />
             </div>`
         }
     }
 
-    return { BlurredImage }
+    return { BlurredImage, Image }
 }
