@@ -160,3 +160,8 @@ depends on our css... **Need a way to pass in a sizes array**
 * Small screens, laptops – 769px — 1024px.
 * Desktops, large screens – 1025px — 1200px.
 * Extra large screens, TV – 1201px, and more.
+
+
+------------------------------------------------------------
+
+[css-tricks responsice image article](https://css-tricks.com/a-guide-to-the-responsive-images-syntax-in-html/)

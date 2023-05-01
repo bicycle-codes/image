@@ -1,9 +1,9 @@
 import { Cloudinary } from '@cloudinary/url-gen'
 import { scale } from '@cloudinary/url-gen/actions/resize'
-import { Attrs } from '../attributes'
+import { Props } from '../attributes'
 
 //
-// create html strings for <picture> elements
+// create html strings for <img> elements
 //
 
 export function CloudinaryImg (cloudName) {
@@ -16,7 +16,7 @@ export function CloudinaryImg (cloudName) {
 
     // const { filename, alt, loading, fetchpriority, className } = props
     // return html for a local file
-    function image (props:Attrs):string {
+    function image (props:Props):string {
         const { alt, filename, loading, fetchpriority } = props
 
         const _class = props.class || props.className

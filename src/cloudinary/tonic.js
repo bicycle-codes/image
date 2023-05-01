@@ -29,6 +29,8 @@ export const CloudinaryTonic = function ({ cloudName }) {
             imgLarge.classList.add('sharp')
             this.state = { blurry: true, imgLarge }
 
+            console.log('**this.props**', this.props)
+
             imgLarge.onload = async () => {
                 this.state.blurry = false
                 await this.reRender()
