@@ -1,15 +1,15 @@
 const defaultSizes = [1024, 768, 480]
 
 export function defaultSrcset (filename:string):string {
-    const URIs:string[] = getSrcset(filename, defaultSizes)
-    return URIs.join(', ')
+    const URIs:string = getSrcset(filename, defaultSizes)
+    return URIs
 }
 
-export function getSrcset (filename:string, sizes:number[]):string[] {
+export function getSrcset (filename:string, sizes:number[]):string {
     // return filenames like `file-480.jpg`
     return sizes.map(n => {
         return getSrcsetItem(filename, n)
-    })
+    }).join(', ')
 }
 
 export function getSrcsetItem (filename:string, n:number) {

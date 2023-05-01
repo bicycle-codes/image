@@ -20,7 +20,7 @@ export const Image:FunctionComponent<Props> = function (config:Props) {
     return h('img', {
         className: config.class || className,
         srcset: (srcset ?
-            (`${filename} 1025w, ` + getSrcset(filename, srcset).join(', ')) :
+            (`${filename} 1025w, ` + getSrcset(filename, srcset)) :
             (`${filename} 1025w, ` + defaultSrcset(filename))),
         sizes: sizes.join(', ') || '100vw',
         decoding: decoding || 'auto',
@@ -55,7 +55,7 @@ export const BlurredImage:FunctionComponent<BlurProps> = function (props:BlurPro
         imgLarge.setAttribute('fetchpriority', fetchpriority || 'low')
         imgLarge.setAttribute('sizes', sizes ? sizes.join(', ') : '100vw')
         imgLarge.setAttribute('srcset', (srcset ?
-            `${filename} 1025w, ` + getSrcset(filename, srcset).join(', ') :
+            `${filename} 1025w, ` + getSrcset(filename, srcset) :
             `${filename} 1025w, ` + defaultSrcset(filename)
         ))
         imgLarge.src = filename

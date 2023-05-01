@@ -120,6 +120,41 @@ render(html`<${Example} />`, document.getElementById('root'))
 Create a [tonic](https://tonicframework.dev/) component for an `img` tag with a good defualt `srcset` attribute.
 
 ```js
+import Tonic from '@socketsupply/tonic'
+import { CloudinaryTonic } from '../dist/cloudinary/tonic'
+import '../dist/style.css'
+import './my-style.css'
+
+const { ImageTag, BlurredImage } = CloudinaryTonic({ cloudName: 'nichoth' })
+const placeholderImg = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/...'
+
+const sizes = [
+    '50vw'
+]
+
+class TheApp extends Tonic {
+    render () {
+        return this.html`<div class="the-app">
+            <image-tag
+                id="tag-test"
+                filename="testing"
+                sizes=${sizes.join(', ')}
+            ></image-tag>
+
+            <blurred-image
+                id="test"
+                filename="testing"
+                blurplaceholder=${placeholderImg}
+                sizes=${sizes.join(', ')}
+                maxWidth=${[1024]}
+            ></blurred-image>
+        </div>`
+    }
+}
+
+Tonic.add(ImageTag)
+Tonic.add(BlurredImage)
+Tonic.add(TheApp)
 ```
 
 ### tonic + local files

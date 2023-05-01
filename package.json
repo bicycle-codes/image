@@ -16,7 +16,7 @@
     "build-esm": "esbuild src/**/*.ts --format=esm --keep-names --outdir=./dist --out-extension:.js=.js",
     "build-bin": "mkdir -p ./dist/bin && rm -rf ./dist/bin/* && cp ./bin/to-string.js ./dist/bin",
     "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && tsc && npm run cp-css && npm run build-tonic && npm run build-bin",
-    "build-tonic": "cp ./src/cloudinary/tonic.js ./dist/cloudinary",
+    "build-tonic": "cp ./src/cloudinary/tonic.js ./dist/cloudinary && cp ./src/tonic.js ./dist",
     "cp-css": "cp ./src/*.css ./dist",
     "preversion": "npm run lint",
     "postversion": "git push && git push --tags && npm publish",
