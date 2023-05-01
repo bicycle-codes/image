@@ -43,6 +43,10 @@ export async function resize (filename, outputDir, sizes) {
     const ext = parts.pop()
     const noExt = parts.join('.')
 
+    console.log('**filename**', filename)
+
+    await fs.copyFile(filename, join(outPath, name))
+
     sizes.forEach(async n => {
         await sharp(filename)
             .resize(n)

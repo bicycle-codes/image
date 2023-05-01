@@ -29,8 +29,14 @@ const resizePath = path.join(__dirname, '..', 'bin', 'resize.js')
 test('resize an image to default sizes', async t => {
     execSync(resizePath + ' ' + path.join(__dirname, '..', 'example', '100.jpg' +
         ' -o testing'))
-    t.ok(await stat(path.join(process.cwd(), 'testing', '100-480.jpg')),
-        'should create files with the expected naming convention')
+    t.ok(await stat(path.join(__dirname, '../', 'testing', '100-480.jpg')),
+        'should create the 480 file')
+    t.ok(await stat(path.join(__dirname, '../', 'testing', '100-768.jpg')),
+        'should create the 768 file')
+    t.ok(await stat(path.join(__dirname, '../', 'testing', '100-1024.jpg')),
+        'should create the 1024 file')
+    t.ok(await stat(path.join(__dirname, '../', 'testing', '100.jpg')),
+        'should copy the original file to the new directory')
 })
 
 test('clean up', async () => {
