@@ -21,14 +21,15 @@ test('Use the CLI with a local file', t => {
     const localFilePath = path.join(__dirname, '..', 'example', '100.jpg')
     const base64 = execSync(cliPath + ' ' + localFilePath)
 
-    t.ok(base64.includes('data:image/jpeg;'), 'should return base64 string')
+    t.ok(base64.includes('data:image/jpeg;'), 'should return a base64 string')
 })
 
-const resizePath = path.join(__dirname, '..', 'bin', 'resize.js')
-
 test('resize an image to default sizes', async t => {
+    const resizePath = path.join(__dirname, '..', 'bin', 'resize.js')
     execSync(resizePath + ' ' + path.join(__dirname, '..', 'example', '100.jpg' +
+        // `testing` is relative to the cwd
         ' -o testing'))
+
     t.ok(await stat(path.join(__dirname, '../', 'testing', '100-480.jpg')),
         'should create the 480 file')
     t.ok(await stat(path.join(__dirname, '../', 'testing', '100-768.jpg')),

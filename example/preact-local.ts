@@ -12,11 +12,11 @@ const Example = function () {
 
         <p>non blurry image</p>
         <div class="non-blurry-wrapper">
-            <${Image} filename=${'testing'} class=${'non-blurry-image'} />
+            <${Image} filename=${'100.jpg'} class=${'non-blurry-image'} />
         </div>
 
         <p>blurry image</p>
-        <${BlurredImage} filename=${'testing'} class=${'blur-test'}
+        <${BlurredImage} filename=${'100.jpg'} class=${'blur-test'}
             blurPlaceholder=${placeholderImg}
         />
     </div>`

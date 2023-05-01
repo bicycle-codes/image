@@ -5,10 +5,11 @@
   "type": "module",
   "main": "dist/index.ts",
   "bin": {
-    "stringify": "./bin/to-string.js"
+    "image.stringify": "./bin/to-string.js",
+    "image.resize": "./bin/resize.js"
   },
   "scripts": {
-    "start": "npm run build && cd example && rm -rf ./node_modules && npm i && npm start",
+    "start": "npm run build && ./bin/resize.js ./example/100.jpg -o ./example && cd example && rm -rf ./node_modules && npm i && npm start",
     "lint": "standardx -v \"./**/*.ts\"",
     "test": "npm run lint && node test/cli.js | tap-arc",
     "build-cjs": "esbuild src/**/*.ts --format=cjs --keep-names --outdir=./dist --out-extension:.js=.cjs",

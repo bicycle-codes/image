@@ -5,11 +5,11 @@ import sharp from 'sharp'
 import { resolve, join } from 'node:path'
 import * as fs from 'node:fs/promises'
 
-const defaultSizes = [480, 768, 1024]
+export const defaultSizes = [480, 768, 1024]
 
 const args = yargs(hideBin(process.argv))
     .demandCommand(1)
-    .command('filename', 'resize the given local file to the default sizes')
+    .command('filename', 'resize the given local file to default sizes')
     .option('output', {
         alias: 'o',
         type: 'string',
@@ -39,11 +39,11 @@ export async function resize (filename, outputDir, sizes) {
         recursive: true,
     })
 
+    // use a naming convention for different sizes
+    // `filename-480.jpg`
     const parts = name.split('.')
     const ext = parts.pop()
     const noExt = parts.join('.')
-
-    console.log('**filename**', filename)
 
     await fs.copyFile(filename, join(outPath, name))
 
