@@ -1,10 +1,14 @@
 // @ts-check
 import { test } from 'tapzero'
 import { execSync } from 'child_process'
+import * as fs from 'node:fs'
 import path from 'node:path'
+import * as util from 'node:util'
 import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+const stat = util.promisify(fs.stat)
+const rm = util.promisify(fs.rm)
 
 const cliPath = path.join(__dirname, '..', 'bin', 'to-string.js')
 
@@ -13,9 +17,22 @@ test('Use the CLI', async t => {
     t.ok(base64.includes('data:image/jpeg;'), 'should return base64 string')
 })
 
-test('Use the CLI with a local file', async t => {
+test('Use the CLI with a local file', t => {
     const localFilePath = path.join(__dirname, '..', 'example', '100.jpg')
     const base64 = execSync(cliPath + ' ' + localFilePath)
 
     t.ok(base64.includes('data:image/jpeg;'), 'should return base64 string')
+})
+
+const resizePath = path.join(__dirname, '..', 'bin', 'resize.js')
+
+test('resize an image to default sizes', async t => {
+    execSync(resizePath + ' ' + path.join(__dirname, '..', 'example', '100.jpg' +
+        ' -o testing'))
+    t.ok(await stat(path.join(process.cwd(), 'testing', '100-480.jpg')),
+        'should create files with the expected naming convention')
+})
+
+test('clean up', async () => {
+    await rm(path.join(process.cwd(), 'testing'), { recursive: true })
 })

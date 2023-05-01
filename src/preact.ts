@@ -55,8 +55,8 @@ export const BlurredImage:FunctionComponent<BlurProps> = function (props:BlurPro
         imgLarge.setAttribute('fetchpriority', fetchpriority || 'low')
         imgLarge.setAttribute('sizes', sizes ? sizes.join(', ') : '100vw')
         imgLarge.setAttribute('srcset', (srcset ?
-            getSrcset(filename, srcset).join(', ') :
-            defaultSrcset(filename)
+            `${filename} 1025w, ` + getSrcset(filename, srcset).join(', ') :
+            `${filename} 1025w, ` + defaultSrcset(filename)
         ))
         imgLarge.src = filename
 
@@ -65,8 +65,6 @@ export const BlurredImage:FunctionComponent<BlurProps> = function (props:BlurPro
     }, [placeholder.current])
 
     const _class = props.class || className
-
-    // @TODO -- should use <picture> element, not img
 
     return h('div', {
         class: 'placeholder' + (_class ? ` ${_class}` : ''),
