@@ -9,12 +9,14 @@ const sizes = ['50vw']
 class TheApp extends Tonic {
     render () {
         return this.html`<div class="the-app">
+            <p>image</p>
             <image-tag
                 id="tag-test"
                 filename="/100.jpg"
                 sizes=${sizes.join(', ')}
             ></image-tag>
 
+            <p>blurred placeholder image</p>
             <blurred-image
                 id="test"
                 filename="/100.jpg"
