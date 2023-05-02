@@ -1,15 +1,13 @@
 # image
 Create responsive `img` tags, with a `srcset` property that allows browsers to download the best size image.
 
-See this great article for more information about images -- [A Guide to the Responsive Images Syntax in HTML](https://css-tricks.com/a-guide-to-the-responsive-images-syntax-in-html/#using-srcset)
+See this nice article for more information about images -- [A Guide to the Responsive Images Syntax in HTML](https://css-tricks.com/a-guide-to-the-responsive-images-syntax-in-html/#using-srcset)
 
-Also includes tools to help with the ["Blur Up" technique](https://css-tricks.com/the-blur-up-technique-for-loading-background-images/), which means creating a nice blurred placeholder image while a high resolution image downloads, then switching them out, so the high res image is visible when it's ready
+This project also includes tools to help with the ["Blur Up" technique](https://css-tricks.com/the-blur-up-technique-for-loading-background-images/), which means creating a nice blurred placeholder image while a high resolution image downloads, then switching them out, so the high res image is visible when it's ready
 
 See [the section on the CLI](#base64-placeholders) for info on creating base64 strings of images.
 
-Also, this includes a tool to help you create multiple resolutions of a single source image -- [resizing images](#resizing-images)
-
-------------------
+-----------
 
 This is designed to work easily with either [Cloudinary](https://cloudinary.com/) or locally hosted image files. If you are hosting images locally, you may want to create multiple resolutions of the images. For this, see [the secion on resizing images](#resizing-images).
 
@@ -127,8 +125,8 @@ Create a [tonic](https://tonicframework.dev/) component for an `img` tag with a 
 
 ```js
 import Tonic from '@socketsupply/tonic'
-import { CloudinaryTonic } from '../dist/cloudinary/tonic'
-import '../dist/style.css'
+import { CloudinaryTonic } from '@nichoth/image/cloudinary/tonic'
+import '@nichoth/image/style.css'
 import './my-style.css'
 
 const { ImageTag, BlurredImage } = CloudinaryTonic({ cloudName: 'nichoth' })
@@ -240,6 +238,7 @@ console.log(markup)
 ```js
 import { CloudinaryImage } from '@nichoth/image/cloudinary'
 
+// pass in your cloudinary name
 const { Image } = CloudinaryImage('nichoth')
 
 const html = Image({
