@@ -9,7 +9,7 @@ See [the section on the CLI](#base64-placeholders) for info on creating base64 s
 
 ------------------
 
-This is designed to work easily with either [Cloudinary](https://cloudinary.com/) or locally hosted image files. If you are hosting images locally, you mayu want to create multiple resolutions of them. For this, see [the secion on resizing images]().
+This is designed to work easily with either [Cloudinary](https://cloudinary.com/) or locally hosted image files. If you are hosting images locally, you may want to create multiple resolutions of the images. For this, see [the secion on resizing images](#resizing-images).
 
 ## examples
 
@@ -230,7 +230,7 @@ npx image.stringify my-cloud-name my-filename.jpg
 ```
 
 #### Write the base64 string to a file
-Use bash to redirect output to a file:
+Use the shell to redirect output to a file:
 ```bash
 npx image.stringify my-cloud-name my-filename.jpg > ./my-filename.base64
 ```
@@ -264,4 +264,5 @@ Then run via `npx`
 ```bash
 npx image.resize ./file.jpg --output ./output-dir
 ```
-This will create 4 files in the output directory -- `file-480.jpg`, `file-768.jpg`, and `file-1024.jpg`, and `file.jpg`. It will copy the original file in addition to resizing it to multiple versions.
+
+This will create 4 files in the output directory -- `file-480.jpg`, `file-768.jpg`, and `file-1024.jpg`, and `file.jpg`. It will copy the original file in addition to resizing it to new versions.
