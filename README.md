@@ -17,6 +17,17 @@ This is designed to work easily with either [Cloudinary](https://cloudinary.com/
 **note**
 Use the dev tools to throttle the internet speed, and load in a mobile view. You should see that the requests are made for a smaller version of the image.
 
+## test
+Run all tests:
+```
+npm test
+```
+
+Run the tests for HTML generation:
+```
+npm run test-html
+```
+
 ## examples
 
 ## preact
