@@ -203,6 +203,17 @@ Tonic.add(TheApp)
 
 ------------------------------------------------------
 
+## HTML
+Generate HTML strings instead of components.
+
+```js
+// node js
+```
+
+-----------------------------------------------------
+
+
+
 ## base64 placeholders
 
 We need small base64 encoded strings to use as placeholder images for the blur up effect.

@@ -1,4 +1,4 @@
-const defaultSizes = [1024, 768, 480]
+export const defaultSizes = [1024, 768, 480]
 
 export function defaultSrcset (filename:string):string {
     const URIs:string = getSrcset(filename, defaultSizes)
@@ -12,7 +12,7 @@ export function getSrcset (filename:string, sizes:number[]):string {
     }).join(', ')
 }
 
-export function getSrcsetItem (filename:string, n:number) {
+export function getSrcsetItem (filename:string, n:number):string {
     const fileParts = filename.split('.')
     const ext = fileParts.pop()
     const noExt = fileParts.join('.')

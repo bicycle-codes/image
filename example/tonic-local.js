@@ -20,7 +20,6 @@ class TheApp extends Tonic {
                 filename="/100.jpg"
                 blurplaceholder=${placeholderImg}
                 sizes=${sizes.join(', ')}
-                maxWidth=${[1024]}
             ></blurred-image>
         </div>`
     }
