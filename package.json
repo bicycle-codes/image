@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "npm run build && ./bin/resize.js ./example/100.jpg -o ./example && cd example && rm -rf ./node_modules && npm i && npm start",
-    "build-example": "npm run build && ./bin/resize.js ./example/100.jpg -o ./example && cd example && rm -rf ./node_modules && npm i && npx vite build",
+    "build-example": "npm run build && ./bin/resize.js ./example/100.jpg -o ./example && cd example && rm -rf ./node_modules && npm i && npx vite build && cp ./100* ./dist",
     "lint": "standardx -v \"./**/*.ts\"",
     "test": "npm run lint && node test/cli.js | tap-arc && npm run test-html",
     "test-html": "npm run lint && node test/index.js | tap-arc",
