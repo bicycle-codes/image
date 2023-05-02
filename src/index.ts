@@ -24,10 +24,11 @@ import { getSrcset, defaultSizes } from './srcset.js'
 
 export function html (props:Props):string {
     const { className, sizes, filename, decoding,
-        loading, fetchpriority } = props
+        loading, fetchpriority, alt } = props
 
     return `<div class=${props.class || className}>
         <img
+            alt="${alt}"
             srcset="${getSrcset('/100.jpg', defaultSizes)}"
             sizes="${sizes?.join(', ') || '100vw'}"
             src="/${filename}"

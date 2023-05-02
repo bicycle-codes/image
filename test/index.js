@@ -17,4 +17,6 @@ test('create HTML strings with defaults', async t => {
     t.ok(markup.includes('loading="lazy"'), 'has "loading" attribute')
     t.ok(markup.includes('fetchpriority="low"'),
         'should have the default fetchpriority')
+    t.ok(markup.includes('alt="test picture"'),
+        'should have the given alt attribute')
 })
