@@ -78,3 +78,90 @@ sizes="(min-width: 50em) 50em, 100vw"
 [MDN -- The Media or Image Source element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source)
 
 [the `media` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source#media) -- a media query
+
+
+------------------------------------------
+
+--------------------
+## sizes
+--------------------
+
+[MDN page](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#sizes)
+
+> One or more strings separated by commas, indicating a set of source sizes. Each source size consists of:
+
+> A media condition. This must be omitted for the last item in the list.
+> A source size value.
+
+> Media Conditions describe properties of the viewport, not of the image. For example, `(max-height: 500px) 1000px` proposes to use a source of 1000px width, if the viewport is not higher than 500px.
+
+---------------------------
+
+
+
+**note**
+> If the `srcset` attribute uses width descriptors, the sizes attribute must also be present, or the `srcset` itself will be ignored.
+
+
+
+------------
+
+> `srcset` defines the set of images we will allow the browser to choose between,
+
+**sizes**
+
+[see responsive page](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)
+
+
+```
+sizes="(max-width: 600px) 480px, 800px"
+```
+
+> A media condition `(max-width:600px)` -- a media condition describes a possible state that the screen can be in. In this case, we are saying "when the viewport width is 600 pixels or less".
+
+`sizes` defines a set of media conditions (e.g. screen widths) and indicates what image size would be best to choose, when certain media conditions are true --
+
+> The width of the slot the image will fill when the media condition is true (480px)
+
+This is how wide the image will be when the screen size is less than 600px
+
+Thinking about my demo...
+* the css sizes the image to 50vw
+* so you would want a `sizes` of `(max-width:1000px) 500px, ...`
+or do it like
+
+```
+sizes="50vw"
+```
+That means choose a size that is half the viewport width
+
+> **Note**: For the slot width, rather than providing an absolute width (for example, 480px), you can alternatively provide a width relative to the viewport (for example, 50vw) 
+
+```
+sizes="(max-width: 600px) 480px,
+       800px"
+```
+
+> **note** the last slot width has no media condition (this is the default that is chosen when none of the media conditions are true).
+
+> The browser ignores everything after the first matching condition, so be careful how you order the media conditions.
+
+--------------------
+
+depends on our css... **Need a way to pass in a sizes array**
+
+
+------------------------------
+
+## common breakpoints
+
+* Mobile devices – 320px — 480px.
+* iPads, Tablets – 481px — 768px.
+* Small screens, laptops – 769px — 1024px.
+* Desktops, large screens – 1025px — 1200px.
+* Extra large screens, TV – 1201px, and more.
+
+
+------------------------------------------------------------
+
+[css-tricks responsice image article](https://css-tricks.com/a-guide-to-the-responsive-images-syntax-in-html/)

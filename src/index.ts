@@ -1,6 +1,6 @@
-import { Attrs } from './attributes'
+import { Props } from './attributes'
 
-export function html (props:Attrs) {
+export function html (props:Props) {
 
 }
 

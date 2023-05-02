@@ -6,18 +6,18 @@ import { hideBin } from 'yargs/helpers'
 import sharp from 'sharp'
 import { fileTypeFromFile } from 'file-type'
 
-// `image cloud filename` -- this means read from cloudinary
-// `image filename` -- this means use a local file
+// `image.stringify cloud filename` -- this means read from cloudinary
+// `image.stringify filename` -- this means use a local file
 
 const args = yargs(hideBin(process.argv))
     .demandCommand(1)
     .command('cloudName filename', 'the cloud name and filename to use')
     .command('filename', 'the local filename to read')
-    .example('`npx image name my-file.jpg`', 'Use the the cloudinary namespace `name`' +
+    .example('`npx image.stringify name my-file.jpg`', 'Use the the cloudinary namespace `name`' +
         ' to convert `my-file.jpg` to a small base64 string')
-    .example('`npx image my-fiile.jpg`',
+    .example('`npx image.stringify my-fiile.jpg`',
         'Create a small base64 string from a local file')
-    .usage('Usage: image <cloudName> <filename>')
+    .usage('Usage: image.stringify <cloudName> <filename>')
     .argv
 
 if (args._.length > 1) {

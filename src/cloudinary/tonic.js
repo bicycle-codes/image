@@ -2,12 +2,13 @@
 import { Cloudinary } from '@cloudinary/url-gen'
 import { scale } from '@cloudinary/url-gen/actions/resize'
 import Tonic from '@socketsupply/tonic'
+import { CloudinarySrcset } from './srcset.js'
 
 /**
  * This is a factory function that returns an object like { Image },
  * where `Image` is a preact component
  * @param config {{ cloudName:string }} The cloudName for Cloudinary
- * @returns { { BlurredImage } } Tonic components
+ * @returns { { BlurredImage, ImageTag } } Tonic components
  */
 export const CloudinaryTonic = function ({ cloudName }) {
     const cld = new Cloudinary({
@@ -34,18 +35,22 @@ export const CloudinaryTonic = function ({ cloudName }) {
                 await this.reRender()
                 const placeholder = this.querySelector('.placeholder')
                 imgLarge.classList.add('loaded')
-                // @ts-ignore
-                placeholder.appendChild(imgLarge)
+                if (placeholder) placeholder.appendChild(imgLarge)
             }
         }
 
         getImg () {
-            const { filename } = this.props
+            const { filename, maxwidth, sizes } = this.props
             const { imgLarge } = this.state
+            const { defaultSrcset } = CloudinarySrcset(cld)
+            const srcset = defaultSrcset(filename)
+
+            imgLarge.setAttribute('srcset', srcset)
+            imgLarge.setAttribute('sizes', sizes)
             imgLarge.src = (cld.image(filename)
                 .format('auto')
                 .quality('auto')
-                .resize(scale().width(800))
+                .resize(scale().width(maxwidth))
                 .toURL())
         }
 
@@ -65,5 +70,31 @@ export const CloudinaryTonic = function ({ cloudName }) {
         }
     }
 
-    return { BlurredImage }
+    class ImageTag extends Tonic {
+        render () {
+            const { sizes, className, filename, decoding,
+                loading, fetchpriority } = this.props
+            const _class = (this.props.class || className)
+            const { defaultSrcset } = CloudinarySrcset(cld)
+            const src = (cld.image(filename)
+                .format('auto')
+                .quality('auto')
+                .toURL())
+
+            const srcset = defaultSrcset(filename)
+
+            return this.html`<div class=${'image' + (_class ? ` ${_class}` : '')}>
+                <img
+                    srcset="${srcset}"
+                    sizes="${sizes}"
+                    src=${src}
+                    decoding="${decoding || 'auto'}"
+                    loading="${loading || 'lazy'}"
+                    fetchpriority="${fetchpriority || 'low'}"
+                />
+            </div>`
+        }
+    }
+
+    return { BlurredImage, ImageTag }
 }

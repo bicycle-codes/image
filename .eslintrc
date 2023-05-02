@@ -5,9 +5,11 @@
   },
   "rules": {
     "react/jsx-indent" : ["error", 4],
+    "multiline-ternary": ["off"],
     "operator-linebreak": "off",
     "react/jsx-wrap-multilines": "off",
     "react/jsx-closing-tag-location": "off",
+    "object-curly-newline": "off",
     "no-multiple-empty-lines": [
       "error",
       {
