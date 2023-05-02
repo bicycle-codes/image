@@ -10,9 +10,9 @@ export function html (props:Props):string {
     return `<div class="${'image' + (_class ? ` ${_class}` : '')}">
         <img
             alt="${alt}"
-            srcset="${getSrcset('/100.jpg', defaultSizes)}"
+            srcset="${getSrcset(filename, defaultSizes)}"
             sizes="${sizes?.join(', ') || '100vw'}"
-            src="/${filename}"
+            src="${filename}"
             decoding="${decoding || 'auto'}"
             loading="${loading || 'lazy'}"
             fetchpriority="${fetchpriority || 'low'}"

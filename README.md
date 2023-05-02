@@ -100,7 +100,7 @@ const Example = function () {
     return html`<div>
         <p>hello</p>
 
-        <p>non blurry image</p>
+        <p>non-blurry image</p>
         <div class="non-blurry-wrapper">
             <${Image} filename=${'/100.jpg'} class=${'non-blurry-image'}
                 sizes=${['50vw']}
@@ -206,13 +206,18 @@ Tonic.add(TheApp)
 ## HTML
 Generate HTML strings instead of components.
 
+### HTML with local files
+
+**note**
+This uses a naming convention for image files. If you are dealing with a file `my-file.jpg`, then alternate resolutions should be named like `my-file-400.jpg`, `my-file-800.jpg`, etc, for versions that are `400` and `800` px wide.
+
 ```js
 // node js
 import { html } from '@nichoth/image'
 
 const markup = html({
     filename: 'aaa.jpg',
-    alt: 'test picture'
+    alt: 'test picture',
 })
 
 console.log(markup)
@@ -229,6 +234,10 @@ console.log(markup)
 //         fetchpriority="low"
 //     >
 // </div>
+```
+
+### HTML with cloudinary
+```js
 ```
 
 -----------------------------------------------------
