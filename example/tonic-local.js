@@ -29,4 +29,3 @@ class TheApp extends Tonic {
 Tonic.add(ImageTag)
 Tonic.add(BlurredImage)
 Tonic.add(TheApp)
-

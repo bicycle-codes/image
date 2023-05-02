@@ -5,7 +5,11 @@ See this great article for more information about images -- [A Guide to the Resp
 
 Also includes tools to help with the ["Blur Up" technique](https://css-tricks.com/the-blur-up-technique-for-loading-background-images/), which means creating a nice blurred placeholder image while a high resolution image downloads, then switching them out, so the high res image is visible when it's ready
 
-See [the section on the CLI]() for info on creating base64 strings of images.
+See [the section on the CLI](#base64-placeholders) for info on creating base64 strings of images.
+
+------------------
+
+This is designed to work easily with either [Cloudinary](https://cloudinary.com/) or locally hosted image files. If you are hosting images locally, you mayu want to create multiple resolutions of them. For this, see [the secion on resizing images]().
 
 ## examples
 
@@ -128,9 +132,7 @@ import './my-style.css'
 const { ImageTag, BlurredImage } = CloudinaryTonic({ cloudName: 'nichoth' })
 const placeholderImg = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/...'
 
-const sizes = [
-    '50vw'
-]
+const sizes = ['50vw']
 
 class TheApp extends Tonic {
     render () {
@@ -158,193 +160,52 @@ Tonic.add(TheApp)
 ```
 
 ### tonic + local files
+Create tonic components that link to locally hosted files.
 
+**note**
+This uses a naming convention for image files. If you are dealing with a file `my-file.jpg`, then alternate resolutions should be named like `my-file-400.jpg`, `my-file-800.jpg`, etc, for versions that are `400` and `800` px wide.
 
-
-
-
-# image
-Use images with the new `<picture>` element, or create a fancy blurred placeholder image.
-
-## Blur Up images
-We can use the ["Blur Up" technique](https://css-tricks.com/the-blur-up-technique-for-loading-background-images/) to load images. This means creating a nice blurred placeholder image while a high resolution image downloads, then switching them out so the high res image is visible when it's ready.
-
-See the next section, [base64 placeholders](#base64-placeholders) for a way to generate the small base64 image.
-
-see [A Guide to the Responsive Images Syntax in HTML](https://css-tricks.com/a-guide-to-the-responsive-images-syntax-in-html/#using-srcset)
-
-## examples
-
-### preact
-
-__sizes__
-```
-  sizes="(max-width: 600px) 480px,
-         800px"
-```
-this means that at 50em and up, the image will be at most 50em wide
-otherwise, it is 100vw
-so 100vw if the viewport is below 50em
-at most 50em
---------------------
-```
-sizes="(min-width: 50em) 50em, 100vw"
-```
-
-
-#### preact + cloudinary -- img element
-Create an `<img>` element with a `srcset` attribute with relevant image sources.
-
-```ts
-import { html } from 'htm/preact'
-import { render } from 'preact'
-import { CloudinaryImg } from '@nichoth/image/cloudinary/preact'
+```js
+import Tonic from '@socketsupply/tonic'
+import { ImageTag, BlurredImage } from '@nichoth/image/tonic'
 import '@nichoth/image/style.css'
 import './my-style.css'
 
-const { Image } = CloudinaryImg({ cloudName: 'nichoth' })
-
-const Example = function () {
-    return html`<div>
-        <p>image</p>
-        <${Image} filename=${'testing'} class=${'my-image-test'}
-            sizes=${['50vw']}
-        />
-    </div>`
-}
-
-const el = document.getElementById('root')
-if (el) render(html`<${Example} />`, el)
-```
-
-#### preact + self hosted files -- img element
-
-```ts
-import { html } from 'htm/preact'
-import { render } from 'preact'
-import { createImage } from '@nichoth/image/preact'
-
-// @TODO
-```
-
-#### preact + cloudinary -- blur up
-```ts
-import { html } from 'htm/preact'
-import { render } from 'preact'
-import { CloudinaryImg } from '@nichoth/image/cloudinary/preact'
-import '@nichoth/image/style.css'  // need this for blur + sharpening animation
-import './my-style.css'
-
-const { BlurredImage } = CloudinaryImg({ cloudName: 'nichoth' })
-const placeholderImg = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2w...'
-
-const Example = function () {
-    return html`<div>
-        <p>blurry image</p>
-        <${BlurredImage} filename=${'testing'} class=${'blur-test'}
-            blurPlaceholder=${placeholderImg} width=${800}
-            sizes=${['50vw']} maxWidth=${800}
-        />
-    </div>`
-}
-
-const el = document.getElementById('root')
-if (el) render(html`<${Example} />`, el)
-```
-
-### preact + self-hosted files -- blur up
-```ts
-// @TODO
-```
-
-
-
-
--------------------------------------------------------
-
-### tonic
-
--------------------------------------------------------
-Create a `<picture>` with [tonic](https://tonicframework.dev/) components.
-
-#### tonic + cloudinary -- img element
-```js
-// @TODO
-```
-
-#### tonic + self hosted files -- img element
-```js
-// @TODO
-```
-
-#### tonic + cloudinary -- "blur up" images
-```js
-import Tonic from '@socketsupply/tonic'
-import { CloudinaryTonic } from '@nichoth/image/cloudinary/tonic'
-import '@nichoth/image/style.css'  // need this for blur + sharpening animation
-import './my-style.css'
-
-const { BlurredImage } = CloudinaryTonic({ cloudName: 'nichoth' })
-const placeholderImg = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD...'
+const placeholderImg = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/...'
+const sizes = ['50vw']
 
 class TheApp extends Tonic {
     render () {
         return this.html`<div class="the-app">
+            <image-tag
+                id="tag-test"
+                filename="/100.jpg"
+                sizes=${sizes.join(', ')}
+            ></image-tag>
+
             <blurred-image
                 id="test"
-                filename="testing"
+                filename="/100.jpg"
                 blurplaceholder=${placeholderImg}
+                sizes=${sizes.join(', ')}
+                maxWidth=${[1024]}
             ></blurred-image>
         </div>`
     }
 }
 
+Tonic.add(ImageTag)
 Tonic.add(BlurredImage)
 Tonic.add(TheApp)
 ```
-
-...and in your HTML file...
-```html
-<body>
-    <the-app id="the-app"></the-app>
-    <script type="module" src="/my-tonic-source.js"></script>
-</body>
-```
-
-#### tonic + self hosted files -- blurred images
-```js
-// @TODO
-```
-
-
-
--------------------------------------------------------
-
-### html
-
--------------------------------------------------------
-Create html strings from local files or cloudinary sources.
-
-### html from cloudinary images -- img element
-```js
-// @TODO
-```
-
-### html from self hosted files -- img element
-```js
-// @TODO
-```
-
-
 
 ------------------------------------------------------
 
 ## base64 placeholders
 
-------------------------------------------------------
 We need small base64 encoded strings to use as placeholder images for the blur up effect.
 
-### CLI
+### base64 CLI
 Use the CLI to generate a small base64 encoded image to use as a blurry placeholder while a better quality image downloads.
 
 First install this locally
@@ -352,29 +213,26 @@ First install this locally
 npm i -S @nichoth/image
 ```
 
-Then call the node binary file included, aliased locally as `image`.
+Then call the node binary file included, aliased locally as `image.stringify`.
 
-This will write to `stdout`.
-
-#### local file
-Convert a local file to base64:
+#### CLI + local file
+Convert a local file to base64 (this will write to `stdout`):
 
 ```bash
-npx image ./my-local-file.jpg
+npx image.stringify ./my-local-file.jpg
 ```
 
-#### cloudinary
+#### CLI + cloudinary
 Or use Cloudinary as an image source:
 
 ```bash
-npx image my-cloud-name my-filename.jpg
+npx image.stringify my-cloud-name my-filename.jpg
 ```
 
 #### Write the base64 string to a file
-Use shell scripting to redirect output to a file.
-
+Use bash to redirect output to a file:
 ```bash
-npx image my-cloud-name my-filename.jpg > ./my-filename.base64
+npx image.stringify my-cloud-name my-filename.jpg > ./my-filename.base64
 ```
 
 ### node
@@ -390,4 +248,20 @@ const base64FromCloudinary = getImgCloudinary('nichoth', 'my-file.jpg')
 ```
 
 **note**
-There's no CJS version of these because I used top level `await`.
+There's no CJS version of the base64 functions because I used top level `await`.
+
+-----------------------------------
+
+## resizing images
+Create multiple resolutions of a single source image. This is suitable for the default resolution options that are created for the `srcset` attribute in the client side JS.
+
+First install locally:
+```bash
+npm i -S @nichoth/image
+```
+
+Then run via `npx`
+```bash
+npx image.resize ./file.jpg --output ./output-dir
+```
+This will create 4 files in the output directory -- `file-480.jpg`, `file-768.jpg`, and `file-1024.jpg`, and `file.jpg`. It will copy the original file in addition to resizing it to multiple versions.
