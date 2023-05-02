@@ -40,4 +40,5 @@ jobs:
       - name: Upload GitHub Pages artifact
         env:
           PATH: example
+          INPUT_PATH: example
         uses: actions/upload-pages-artifact@v1.0.8
