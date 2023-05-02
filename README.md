@@ -208,11 +208,17 @@ Generate HTML strings instead of components.
 
 ```js
 // node js
+import { html } from '@nichoth/image'
 
+const markup = html({
+    filename: 'aaa.jpg',
+    alt: 'test picture'
+})
 
+console.log(markup)
 
 // =>
-// <div class=undefined>
+// <div class="image">
 //     <img
 //         alt="test picture"
 //         srcset="/100-1024.jpg 1024w, /100-768.jpg 768w, /100-480.jpg 480w"
@@ -223,7 +229,6 @@ Generate HTML strings instead of components.
 //         fetchpriority="low"
 //     >
 // </div>
-
 ```
 
 -----------------------------------------------------
