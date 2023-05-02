@@ -50,9 +50,12 @@ jobs:
       id-token: write   # to verify the deployment originates from an appropriate source
 
     # Deploy to the github-pages environment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    # environment:
+    #   name: github-pages
+    #   url: ${{ steps.deployment.outputs.page_url }}
+
+    - name: Upload GitHub Pages artifact
+      uses: actions/upload-pages-artifact@v1.0.8
 
     # Specify runner + deployment step
     runs-on: ubuntu-latest
