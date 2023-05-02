@@ -271,8 +271,9 @@ This will create 4 files in the output directory -- `file-480.jpg`, `file-768.jp
 Or use this in node
 
 ```js
-// export async function resize (filename, outputDir, sizes) {
 import { resize, defaultSizes } from '@nichoth/image/resize'
+
+// (filename, outputDir, sizes) {
 await resize('./my-file.jpg', './output-dir', defaultSizes)
 // ./output-dir now contains the default resolutions of my-file.jpg
 ```
