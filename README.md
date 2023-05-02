@@ -326,3 +326,4 @@ import { resize, defaultSizes } from '@nichoth/image/resize'
 await resize('./my-file.jpg', './output-dir', defaultSizes)
 // ./output-dir now contains the default resolutions of my-file.jpg
 ```
+ 
