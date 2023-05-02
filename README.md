@@ -14,8 +14,8 @@ This is designed to work easily with either [Cloudinary](https://cloudinary.com/
 ## demonstration
 [See a demonstration of this](https://nichoth-image.netlify.app/), with the `tonic` components.
 
-**note**
-Use the dev tools to throttle the internet speed, and load in a mobile view. You should see that the requests are made for a smaller version of the image.
+> **note**
+> Use the dev tools to throttle the internet speed, and load in a mobile view. You should see that the requests are made for a smaller version of the image.
 
 ## test
 Run all tests:
@@ -99,8 +99,8 @@ const Example = function () {
 ### preact + local files
 Create an `img` tag that links to locally hosted files. See [the CLI section]() for info on creating images of different sizes.
 
-**note**
-This uses a naming convention for image files. If you are dealing with a file `my-file.jpg`, then alternate resolutions should be named like `my-file-400.jpg`, `my-file-800.jpg`, etc, for versions that are `400` and `800` px wide.
+> **note**
+> This uses a naming convention for image files. If you are dealing with a file `my-file.jpg`, then alternate resolutions should be named like `my-file-400.jpg`, `my-file-800.jpg`, etc, for versions that are `400` and `800` px wide.
 
 ```js
 import { html } from 'htm/preact'
@@ -179,8 +179,8 @@ Tonic.add(TheApp)
 ### tonic + local files
 Create tonic components that link to locally hosted files.
 
-**note**
-This uses a naming convention for image files. If you are dealing with a file `my-file.jpg`, then alternate resolutions should be named like `my-file-400.jpg`, `my-file-800.jpg`, etc, for versions that are `400` and `800` px wide.
+> **note**
+> This uses a naming convention for image files. If you are dealing with a file `my-file.jpg`, then alternate resolutions should be named like `my-file-400.jpg`, `my-file-800.jpg`, etc, for versions that are `400` and `800` px wide.
 
 ```js
 import Tonic from '@socketsupply/tonic'
@@ -223,8 +223,8 @@ Generate HTML strings instead of components.
 
 ### HTML with local files
 
-**note**
-This uses a naming convention for image files. If you are dealing with a file `my-file.jpg`, then alternate resolutions should be named like `my-file-400.jpg`, `my-file-800.jpg`, etc, for versions that are `400` and `800` px wide.
+> **note**
+> This uses a naming convention for image files. If you are dealing with a file `my-file.jpg`, then alternate resolutions should be named like `my-file-400.jpg`, `my-file-800.jpg`, etc, for versions that are `400` and `800` px wide.
 
 ```js
 // node js
@@ -313,8 +313,8 @@ const base64FromLocalFile = getImgFile('./file.jpg')
 const base64FromCloudinary = getImgCloudinary('nichoth', 'my-file.jpg')
 ```
 
-**note**
-There's no CJS version of the base64 functions because I used top level `await`.
+> **note**
+> There's no CJS version of the base64 functions because I used top level `await`.
 
 -----------------------------------
 
