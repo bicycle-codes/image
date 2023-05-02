@@ -208,6 +208,22 @@ Generate HTML strings instead of components.
 
 ```js
 // node js
+
+
+
+// =>
+// <div class=undefined>
+//     <img
+//         alt="test picture"
+//         srcset="/100-1024.jpg 1024w, /100-768.jpg 768w, /100-480.jpg 480w"
+//         sizes="100vw"
+//         src="/aaa.jpg"
+//         decoding="auto"
+//         loading="lazy"
+//         fetchpriority="low"
+//     >
+// </div>
+
 ```
 
 -----------------------------------------------------

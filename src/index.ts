@@ -26,7 +26,9 @@ export function html (props:Props):string {
     const { className, sizes, filename, decoding,
         loading, fetchpriority, alt } = props
 
-    return `<div class=${props.class || className}>
+    const _class = props.class || className
+
+    return `<div class="${'image' + (_class ? ` ${_class}` : '')}">
         <img
             alt="${alt}"
             srcset="${getSrcset('/100.jpg', defaultSizes)}"
