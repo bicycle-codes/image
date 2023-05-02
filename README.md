@@ -216,7 +216,7 @@ This uses a naming convention for image files. If you are dealing with a file `m
 import { html } from '@nichoth/image'
 
 const markup = html({
-    filename: 'aaa.jpg',
+    filename: '/aaa.jpg',
     alt: 'test picture',
 })
 
@@ -226,7 +226,7 @@ console.log(markup)
 // <div class="image">
 //     <img
 //         alt="test picture"
-//         srcset="/100-1024.jpg 1024w, /100-768.jpg 768w, /100-480.jpg 480w"
+//         srcset="/aaa-1024.jpg 1024w, /aaa-768.jpg 768w, /aaa-480.jpg 480w"
 //         sizes="100vw"
 //         src="/aaa.jpg"
 //         decoding="auto"
@@ -238,14 +238,20 @@ console.log(markup)
 
 ### HTML with cloudinary
 ```js
+import { CloudinaryImage } from '@nichoth/image/cloudinary'
+
+const { Image } = CloudinaryImage('nichoth')
+
+const html = Image({
+    filename: 'bbb.jpg',
+    alt: 'testing'
+})
 ```
 
 -----------------------------------------------------
 
 
-
 ## base64 placeholders
-
 We need small base64 encoded strings to use as placeholder images for the blur up effect.
 
 ### base64 CLI
@@ -274,6 +280,7 @@ npx image.stringify my-cloud-name my-filename.jpg
 
 #### Write the base64 string to a file
 Use the shell to redirect output to a file:
+
 ```bash
 npx image.stringify my-cloud-name my-filename.jpg > ./my-filename.base64
 ```
