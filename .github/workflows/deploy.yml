@@ -61,4 +61,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v2
         with:
-          PUBLISH_DIR: ./site/dist
+          PUBLISH_DIR: ./_site/dist
