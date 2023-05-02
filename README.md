@@ -266,3 +266,13 @@ npx image.resize ./file.jpg --output ./output-dir
 ```
 
 This will create 4 files in the output directory -- `file-480.jpg`, `file-768.jpg`, and `file-1024.jpg`, and `file.jpg`. It will copy the original file in addition to resizing it to new versions.
+
+### node
+Or use this in node
+
+```js
+// export async function resize (filename, outputDir, sizes) {
+import { resize, defaultSizes } from '@nichoth/image/resize'
+await resize('./my-file.jpg', './output-dir', defaultSizes)
+// ./output-dir now contains the default resolutions of my-file.jpg
+```
