@@ -11,12 +11,14 @@ const sizes = ['50vw']
 class TheApp extends Tonic {
     render () {
         return this.html`<div class="the-app">
+            <p>image</p>
             <image-tag
                 id="tag-test"
                 filename="testing"
                 sizes=${sizes.join(', ')}
             ></image-tag>
 
+            <p>image with blur placeholder</p>
             <blurred-image
                 id="test"
                 filename="testing"
@@ -28,6 +30,6 @@ class TheApp extends Tonic {
     }
 }
 
-Tonic.add(ImageTag)
-Tonic.add(BlurredImage)
-Tonic.add(TheApp)
+Tonic.add(ImageTag, 'image-tag')
+Tonic.add(BlurredImage, 'blurred-image')
+Tonic.add(TheApp, 'the-app')
