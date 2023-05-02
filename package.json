@@ -9,8 +9,8 @@
     "image.resize": "./bin/resize.js"
   },
   "scripts": {
-    "start": "npm run build && ./bin/resize.js ./example/100.jpg -o ./example && cd example && rm -rf ./node_modules && npm i && npm start",
-    "build-example": "npm run build && ./bin/resize.js ./example/100.jpg -o ./example && cd example && rm -rf ./node_modules && npm i && npx vite build",
+    "start": "npm run build && ./bin/resize.js ./_site/100.jpg -o ./_site && cd _site && rm -rf ./node_modules && npm i && npm start",
+    "build-example": "npm run build && ./bin/resize.js ./_site/100.jpg -o ./_site && cd _site && rm -rf ./node_modules && npm i && npx vite build",
     "lint": "standardx -v \"./**/*.ts\"",
     "test": "npm run lint && node test/cli.js | tap-arc && npm run test-html",
     "test-html": "npm run lint && node test/index.js | tap-arc",
@@ -25,7 +25,7 @@
   },
   "directories": {
     "doc": "docs",
-    "example": "example",
+    "example": "_site",
     "test": "test"
   },
   "dependencies": {
