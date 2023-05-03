@@ -59,6 +59,26 @@ npm run test-html
 
 --------------
 
+In general this will create defaults for attributes. The only required attributes are `filename` and `alt`. Everything else has defaults.
+```ts
+interface Props {
+    class?:string,
+    className?:string,
+    filename:string,
+    alt:string,
+    loading?:'eager'|'lazy',
+    fetchpriority?:'high'|'low'|'auto',
+    decoding?:'sync'|'async',
+    sizes?:string[],
+    srcset?: number[]
+}
+```
+
+The default `srcset` attribute has these sizes:
+```js
+const defaultSizes = [1024, 768, 480]
+```
+
 ## preact
 
 ### preact + cloudinary

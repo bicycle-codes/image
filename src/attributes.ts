@@ -1,9 +1,9 @@
 export interface Props {
+    class?:string,
     filename:string,
     alt:string,
     loading?:'eager'|'lazy',
-    fetchpriority?:string,
-    class?:string,
+    fetchpriority?:'high'|'low'|'auto',
     className?:string,
     decoding?:'sync'|'async',
     sizes?:string[],
