@@ -15,6 +15,10 @@
 * [the picture element](https://www.smashingmagazine.com/2021/09/modern-image-formats-avif-webp/#progressive-enhancement)
 [css-tricks responsive image article](https://css-tricks.com/a-guide-to-the-responsive-images-syntax-in-html/)
 
+-----
+
+* [Using the srcset and sizes attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#using_the_srcset_and_sizes_attributes)
+
 
 ## common breakpoints
 
@@ -23,3 +27,13 @@
 * Small screens, laptops – 769px — 1024px.
 * Desktops, large screens – 1025px — 1200px.
 * Extra large screens, TV – 1201px, and more.
+
+
+--------------------
+
+
+If the viewport is greater than 50em, then the image will be 50em wide. Else, it is 100vw. So 100vw if the screen size is less than 50em.
+
+```
+sizes="(min-width: 50em) 50em, 100vw"
+```
