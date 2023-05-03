@@ -213,6 +213,9 @@ import './my-style.css'
 const placeholderImg = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/...'
 const sizes = ['50vw']
 
+// `maxWidth` below is used as the `src` attribute on the image tag
+// so it is used if the browser doens't understnad the `srcset` attribute
+
 class TheApp extends Tonic {
     render () {
         return this.html`<div class="the-app">
