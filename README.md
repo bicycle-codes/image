@@ -17,6 +17,10 @@ This is designed to work easily with either [Cloudinary](https://cloudinary.com/
 **note**
 Use the dev tools to throttle the internet speed, and load in a mobile view. You should see that the requests are made for a smaller version of the image.
 
+## develop
+* build consumable files: `npm run build`
+* start a local demo: `npm start`. Also, edit the `index.html` file in `example` to test different implementations.
+
 ## test
 Run all tests:
 ```
