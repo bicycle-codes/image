@@ -19,7 +19,7 @@ See [the section on the CLI](#base64-placeholders) for info on creating base64 s
 
 -----------
 
-This is designed to work easily with either [Cloudinary](https://cloudinary.com/) or locally hosted image files. If you are hosting images locally, you may want to create multiple resolutions of the images. For this, see [the secion on resizing images](#resizing-images).
+This is designed to work easily with either [Cloudinary](https://cloudinary.com/) or locally hosted image files. If you are hosting images locally, you may want to create multiple resolutions of the images. For this, see [the section on resizing images](#resizing-images).
 
 ## install
 ```
