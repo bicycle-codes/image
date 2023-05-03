@@ -49,6 +49,16 @@ npm run test-html
 
 ## examples
 
+--------------
+
+* [preact](#preact)
+* [tonic](#tonic)
+* [plain html](#html)
+* [base64 placeholders](#base64-placeholders)
+* [resizing images](#resizing-images)
+
+--------------
+
 ## preact
 
 ### preact + cloudinary
