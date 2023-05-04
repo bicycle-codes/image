@@ -335,18 +335,25 @@ npm i -S @nichoth/image
 
 Then call the node binary file included, aliased locally as `image.stringify`.
 
+`--size` option is optional. The default is 40px. 
+
+```
+-s, --size     The width of the base64 image                          [number]
+```
+
+
 #### CLI + local file
 Convert a local file to base64 (this will write to `stdout`):
 
 ```bash
-npx image.stringify ./my-local-file.jpg
+npx image.stringify ./my-local-file.jpg --size 40
 ```
 
 #### CLI + cloudinary
 Or use Cloudinary as an image source:
 
 ```bash
-npx image.stringify my-cloud-name my-filename.jpg
+npx image.stringify my-cloud-name my-filename.jpg -s 20
 ```
 
 #### Write the base64 string to a file

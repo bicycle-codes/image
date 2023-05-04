@@ -9,10 +9,17 @@ import { fileTypeFromFile } from 'file-type'
 // `image.stringify cloud filename` -- this means read from cloudinary
 // `image.stringify filename` -- this means use a local file
 
+// npx image.stringify nichoth testing -s 20
+
 const args = yargs(hideBin(process.argv))
     .demandCommand(1)
     .command('cloudName filename', 'the cloud name and filename to use')
     .command('filename', 'the local filename to read')
+    .option('size', {
+        alias: 's',
+        type: 'number',
+        description: 'The width of the base64 image'
+    })
     .example('`npx image.stringify name my-file.jpg`', 'Use the the cloudinary namespace `name`' +
         ' to convert `my-file.jpg` to a small base64 string')
     .example('`npx image.stringify my-fiile.jpg`',
@@ -23,18 +30,20 @@ const args = yargs(hideBin(process.argv))
 if (args._.length > 1) {
     const cloudName = args._[0]
     const filename = args._[1]
-    const uri = await getImgCloudinary(cloudName, filename)
+    const { size } = args
+    const uri = await getImgCloudinary(cloudName, filename, size)
     process.stdout.write(uri + '\n')
 } else {
     // got 1 arg, so use a local file
     const filename = args._[0]
-    const uri = await getImgFile(filename)
+    const { size } = args
+    const uri = await getImgFile(filename, size)
     process.stdout.write(uri + '\n')
 }
 
-export async function getImgFile (filename) {
+export async function getImgFile (filename, size = 40) {
     const buf = await sharp(filename)
-        .resize(40)
+        .resize(size)
         .jpeg()
         .toBuffer()
 
@@ -44,7 +53,7 @@ export async function getImgFile (filename) {
     return dataUri
 }
 
-export async function getImgCloudinary (cloudName, filename) {
+export async function getImgCloudinary (cloudName, filename, size = 40) {
     const cld = new Cloudinary({
         cloud: { cloudName },
         url: { secure: true }
@@ -53,7 +62,7 @@ export async function getImgCloudinary (cloudName, filename) {
     const url = (cld.image(filename)
         .format('auto')
         .quality('auto')
-        .resize(scale().width(40))
+        .resize(scale().width(size))
         .toURL())
 
     const response = await fetch(url)
