@@ -13,9 +13,13 @@ And the *media condition* for the [sizes attribute](https://developer.mozilla.or
 
 See this nice article for more information about images -- [A Guide to the Responsive Images Syntax in HTML](https://css-tricks.com/a-guide-to-the-responsive-images-syntax-in-html/#using-srcset)
 
+[image optimization](https://bholmes.dev/blog/picture-perfect-image-optimization/)
+
 This project also includes tools to help with the ["Blur Up" technique](https://css-tricks.com/the-blur-up-technique-for-loading-background-images/), which means creating a nice blurred placeholder image while a high resolution image downloads, then switching them out, so the high res image is visible when it's ready
 
 See [the section on the CLI](#base64-placeholders) for info on creating base64 strings of images.
+
+[A guide to getting the dominant color](https://manu.ninja/dominant-colors-for-lazy-loading-images/)
 
 -----------
 
