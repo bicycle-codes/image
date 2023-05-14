@@ -11,6 +11,8 @@ And the *media condition* for the [sizes attribute](https://developer.mozilla.or
     sizes="(min-width: 50em) 50em, 100vw" />
 ```
 
+## some links
+
 See this nice article for more information about images -- [A Guide to the Responsive Images Syntax in HTML](https://css-tricks.com/a-guide-to-the-responsive-images-syntax-in-html/#using-srcset)
 
 [bholmes.dev -- Picture perfect image optimization](https://bholmes.dev/blog/picture-perfect-image-optimization/)
