@@ -35,7 +35,7 @@ npm i -S @nichoth/image
 ## demonstration
 [See a demonstration of this](https://nichoth-image.netlify.app/), with the `tonic` components.
 
-![Demo](docs/demo.png)
+![Demo](docs/image.png)
 
 **note**
 Use the dev tools to throttle the internet speed, and load in a mobile view. You should see that the requests are made for a smaller version of the image.
