@@ -23,6 +23,8 @@ See [the section on the CLI](#base64-placeholders) for info on creating base64 s
 
 [A guide to getting the dominant color](https://manu.ninja/dominant-colors-for-lazy-loading-images/)
 
+[industrial empathy](https://www.industrialempathy.com/posts/image-optimizations/#blurry-placeholder)
+
 -----------
 
 This is designed to work easily with either [Cloudinary](https://cloudinary.com/) or locally hosted image files. If you are hosting images locally, you may want to create multiple resolutions of the images. For this, see [the section on resizing images](#resizing-images).
