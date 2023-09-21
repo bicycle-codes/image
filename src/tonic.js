@@ -44,10 +44,6 @@ export class BlurredImage extends Tonic {
     constructor () {
         super()
         const imgLarge = new window.Image()
-        // @ts-ignore
-        window.imgLarge = imgLarge
-        // @ts-ignore
-        window.blur = this
         imgLarge.classList.add('sharp')
         this.state = { blurry: true, imgLarge }
 
