@@ -7,25 +7,10 @@ You need to define two things -- a list of sizes of images that are available:
 ```
 And the *media condition* for the [sizes attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#sizes):
 ```html
-<img
-    sizes="(min-width: 50em) 50em, 100vw" />
+<img sizes="(min-width: 50em) 50em, 100vw" />
 ```
 
-## some links
-
-See this nice article for more information about images -- [A Guide to the Responsive Images Syntax in HTML](https://css-tricks.com/a-guide-to-the-responsive-images-syntax-in-html/#using-srcset)
-
-[bholmes.dev -- Picture perfect image optimization](https://bholmes.dev/blog/picture-perfect-image-optimization/)
-
-This project also includes tools to help with the ["Blur Up" technique](https://css-tricks.com/the-blur-up-technique-for-loading-background-images/), which means creating a nice blurred placeholder image while a high resolution image downloads, then switching them out, so the high res image is visible when it's ready
-
-See [the section on the CLI](#base64-placeholders) for info on creating base64 strings of images.
-
-[A guide to getting the dominant color](https://manu.ninja/dominant-colors-for-lazy-loading-images/)
-
-[industrial empathy](https://www.industrialempathy.com/posts/image-optimizations/#blurry-placeholder)
-
------------
+-------
 
 This is designed to work easily with either [Cloudinary](https://cloudinary.com/) or locally hosted image files. If you are hosting images locally, you may want to create multiple resolutions of the images. For this, see [the section on resizing images](#resizing-images).
 
@@ -416,3 +401,83 @@ await resize('./my-file.jpg', './output-dir', defaultSizes)
 // ./output-dir now contains the default resolutions of my-file.jpg
 ```
  
+## some links
+
+See this nice article for more information about images -- [A Guide to the Responsive Images Syntax in HTML](https://css-tricks.com/a-guide-to-the-responsive-images-syntax-in-html/#using-srcset)
+
+[bholmes.dev -- Picture perfect image optimization](https://bholmes.dev/blog/picture-perfect-image-optimization/)
+
+This project also includes tools to help with the ["Blur Up" technique](https://css-tricks.com/the-blur-up-technique-for-loading-background-images/), which means creating a nice blurred placeholder image while a high resolution image downloads, then switching them out, so the high res image is visible when it's ready
+
+See [the section on the CLI](#base64-placeholders) for info on creating base64 strings of images.
+
+[A guide to getting the dominant color](https://manu.ninja/dominant-colors-for-lazy-loading-images/)
+
+[industrial empathy](https://www.industrialempathy.com/posts/image-optimizations/#blurry-placeholder)
+
+## bonus
+
+* [asynchronous decoding](https://www.industrialempathy.com/posts/image-optimizations/#asynchronous-decoding)
+* [content-visibility: auto](https://www.industrialempathy.com/posts/image-optimizations/#lazy-rendering)
+
+-------
+
+### sizes
+
+[Responsive Images: If you’re just changing resolutions, use srcset.](https://css-tricks.com/responsive-images-youre-just-changing-resolutions-use-srcset/#aa-also-sizes)
+
+> It’s actually not that bad to just leave it off. In that case, it assumes sizes="100vw"
+
+https://bholmes.dev/blog/picture-perfect-image-optimization/#link-the-sizes-attribute
+
+> In general, the sizes attribute is a way to tell the browser which image to use for a given screen size.
+
+> our image is 100vw (100% screen width) below 500px, and 50vw when we hit `@media (min-width: 500px)`. This perfectly translates to sizes 👉 `sizes="(min-width: 500px) 50vw, 100vw"` 
+
+### better performace
+If your only goal is improved performance, then use an `img` tag with `srcset` and `sizes` attributes.
+
+### format
+Use the `picture` element to choose different files based on a media query or browser support, or for art direction purposes.
+
+> For example, cropping an image differently depending on the size of the screen and differences in the layout.
+
+### `srcset` + `sizes`
+
+`srcset` is a comma separated list of values, telling the browser which image size to download. `src` is a fallback if the browser does not understand `srcset`.
+
+[Resolution Switching](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#resolution_switching_different_sizes)
+> srcset defines the set of images we will allow the browser to choose between
+
+You can use a value like `filename.jpg 2x` (with an `x` descriptor) to tell the browser about different files based on pixel denxity. If it is on a high-res screen, it can download the `2x` version.
+
+Use `srcset` with `sizes` to let the browser choose based on page layout.
+
+#### w descriptors
+
+> The sizes attribute describes the width that the image will display within the layout of your specific site. The width that images render at is layout-dependent rather than just viewport dependent.
+
+#### [sizes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#sizes)
+Contain two things:
+
+1. A media condition. This must be omitted for the last item in the list.
+2. A source size value.
+
+[see sizes here](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#resolution_switching_different_sizes)
+
+> sizes defines a set of media conditions (e.g. screen widths) and indicates what image size would be best to choose
+
+> Media Conditions describe properties of the viewport, not of the image. For example, `(max-height: 500px) 1000px` proposes to use a source of 1000px width, if the viewport is not higher than 500px.
+
+So `sizes` tells us which image to choose based on screen size.
+
+`srcset` tells us different images that are available to choose from. The browser can use a variety of criteria to choose an image, like bandwidth cost in addition to screen size.
+
+> If the srcset attribute uses width descriptors, the sizes attribute must also be present, or the srcset itself will be ignored.
+
+-------
+
+* [Using the srcset and sizes attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#using_the_srcset_and_sizes_attributes)
+* [Responsive images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)
+* [Responsive Images: If you’re just changing resolutions, use srcset.](https://css-tricks.com/responsive-images-youre-just-changing-resolutions-use-srcset/)
+* [Don’t use <picture> (most of the time)](https://cloudfour.com/thinks/dont-use-picture-most-of-the-time/)
