@@ -1,7 +1,7 @@
 {
   "name": "@nichoth/image",
   "description": "An image component",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "type": "module",
   "main": "dist/index.ts",
   "bin": {
