@@ -42,7 +42,6 @@ export const BlurredImage:FunctionComponent<BlurProps> = function (props:BlurPro
     const placeholder = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        console.log('placeholder', placeholder)
         if (!placeholder.current) return
 
         // also start downloading the real image
