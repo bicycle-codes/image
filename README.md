@@ -1,18 +1,22 @@
 # image
-Create responsive `img` tags, with a `srcset` property that allows browsers to download the best size image.
+Create responsive `img` tags, with a `srcset` property that allows browsers to download the best size image. Optionally, create a small, blurry image as a placeholder for the image with the [blur up technique](https://css-tricks.com/the-blur-up-technique-for-loading-background-images/).
 
 You need to define two things -- a list of sizes of images that are available:
 ```js
 [300, 600, 900]
 ```
+
 And the *media condition* for the [sizes attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#sizes):
 ```html
 <img sizes="(min-width: 50em) 50em, 100vw" />
 ```
 
--------
-
 This is designed to work easily with either [Cloudinary](https://cloudinary.com/) or locally hosted image files. If you are hosting images locally, you may want to create multiple resolutions of the images. For this, see [the section on resizing images](#resizing-images).
+
+__See also__
+
+[The links to articles](#some-links)
+
 
 ## install
 ```
@@ -141,7 +145,7 @@ const Example = function () {
 
 
 ### preact + local files
-Create an `img` tag that links to locally hosted files. See [the CLI section]() for info on creating images of different sizes.
+Create an `img` tag that links to locally hosted files. See [the CLI section](#base64-cli) for info on creating images of different sizes.
 
 **note**
 This uses a naming convention for image files. If you are dealing with a file `my-file.jpg`, then alternate resolutions should be named like `my-file-400.jpg`, `my-file-800.jpg`, etc, for versions that are `400` and `800` px wide.
