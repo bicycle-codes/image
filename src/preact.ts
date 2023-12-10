@@ -17,16 +17,18 @@ export const Image:FunctionComponent<Props> = function (config:Props) {
 
     // const defaultSizes = [1024, 768, 480]
 
+    // @ts-ignore -- don't know why we need to do this. It's for `fetchpriority`.
     return h('img', {
-        className: config.class || className,
+        class: config.class || className,
         srcset: (srcset ?
             (`${filename} 1025w, ` + getSrcset(filename, srcset)) :
-            (`${filename} 1025w, ` + defaultSrcset(filename))),
-        sizes: sizes.join(', ') || '100vw',
+            (`${filename} 1025w, ` + defaultSrcset(filename))
+        ),
+        sizes: sizes.join(', '),
         decoding: decoding || 'auto',
         src: filename,
         alt,
-        loading: loading || 'lazy',
+        loading: (loading || 'lazy'),
         fetchpriority: fetchpriority || 'low'
     })
 }

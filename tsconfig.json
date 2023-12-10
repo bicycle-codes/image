@@ -1,20 +1,11 @@
 {
   "compilerOptions": {
-    "plugins": [
-      {
-        "name": "typescript-lit-html-plugin",
-        "tags": [
-          "html",
-          "template"
-        ]
-      }
-    ],
     "listFiles": true,
     "module": "ES2022",
     "target": "ES2022",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "esModuleInterop": false,
-    "lib": ["ES2021", "DOM", "WebWorker"],
+    "lib": ["ES2022", "DOM", "WebWorker"],
     "allowJs": false,
     "skipLibCheck": true,
     "outDir": "dist",
@@ -31,5 +22,9 @@
     "declarationDir": "dist",
     "declarationMap": true
   },
-  "include": ["src/**/*"]
+  "include": [
+    "example",
+    "src/**/*",
+    "test"
+  ]
 }
