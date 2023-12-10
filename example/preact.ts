@@ -1,6 +1,6 @@
 import { html } from 'htm/preact'
 import { render } from 'preact'
-import { CloudinaryImage } from '../dist/cloudinary/preact'
+import { CloudinaryImage } from '../src/cloudinary/preact'
 import '../dist/style.css'
 import './my-style.css'
 
