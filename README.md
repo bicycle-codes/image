@@ -1,6 +1,5 @@
 # image
 ![tests](https://github.com/nichoth/image/actions/workflows/nodejs.yml/badge.svg)
-[![Socket Badge](https://socket.dev/api/badge/npm/package/@nichoth/image)](https://socket.dev/npm/package/@nichoth/image)
 [![types](https://img.shields.io/npm/types/@nichoth/image)](README.md)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
 
