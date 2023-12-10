@@ -4,7 +4,6 @@
     "requireConfigFile": false
   },
   "rules": {
-    "react/jsx-indent" : ["error", 4],
     "multiline-ternary": ["off"],
     "operator-linebreak": "off",
     "react/jsx-wrap-multilines": "off",
