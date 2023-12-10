@@ -86,7 +86,7 @@
     "preact"
   ],
   "author": "nichoth <nichoth@gmail.com> (https://nichoth.com)",
-  "license": "AGPL-3.0-or-later",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nichoth/image.git"

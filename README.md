@@ -1,4 +1,9 @@
 # image
+![tests](https://github.com/nichoth/image/actions/workflows/nodejs.yml/badge.svg)
+[![Socket Badge](https://socket.dev/api/badge/npm/package/@nichoth/image)](https://socket.dev/npm/package/@nichoth/image)
+[![types](https://img.shields.io/npm/types/@nichoth/image)](README.md)
+[![license](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
+
 Create responsive `img` tags, with a `srcset` property that allows browsers to download the best size image. Optionally, create a small, blurry image as a placeholder for the image with the [blur up technique](https://css-tricks.com/the-blur-up-technique-for-loading-background-images/).
 
 You need to define two things -- a list of sizes of images that are available:
