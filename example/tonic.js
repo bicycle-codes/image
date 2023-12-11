@@ -1,4 +1,4 @@
-import Tonic from '@socketsupply/tonic'
+import Tonic from '@nichoth/tonic'
 import { CloudinaryTonic } from '../dist/cloudinary/tonic'
 import '../dist/style.css'
 import './my-style.css'

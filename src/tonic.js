@@ -1,6 +1,5 @@
 // @ts-check
-import Tonic from '@socketsupply/tonic'
-// import { Props } from './attributes.js'
+import Tonic from '@nichoth/tonic'
 import { defaultSrcset, getSrcset } from './srcset.js'
 
 /**
