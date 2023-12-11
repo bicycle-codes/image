@@ -194,7 +194,7 @@ render(html`<${Example} />`, document.getElementById('root'))
 Create a [tonic](https://tonicframework.dev/) component for an `img` tag with a good defualt `srcset` attribute.
 
 ```js
-import Tonic from '@socketsupply/tonic'
+import Tonic from '@nichoth/tonic'
 import { CloudinaryTonic } from '@nichoth/image/cloudinary/tonic'
 import '@nichoth/image/style.css'
 import './my-style.css'
@@ -239,7 +239,7 @@ Create tonic components that link to locally hosted files.
 This uses a naming convention for image files. If you are dealing with a file `my-file.jpg`, then alternate resolutions should be named like `my-file-400.jpg`, `my-file-800.jpg`, etc, for versions that are `400` and `800` px wide.
 
 ```js
-import Tonic from '@socketsupply/tonic'
+import Tonic from '@nichoth/tonic'
 import { ImageTag, BlurredImage } from '@nichoth/image/tonic'
 import '@nichoth/image/style.css'
 import './my-style.css'
