@@ -1,7 +1,7 @@
 {
   "name": "@bicycle-codes/image",
   "description": "An image component",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "type": "module",
   "main": "dist/index.ts",
   "bin": {
