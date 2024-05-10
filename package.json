@@ -1,5 +1,5 @@
 {
-  "name": "@nichoth/image",
+  "name": "@bicycle-codes/image",
   "description": "An image component",
   "version": "0.0.14",
   "type": "module",
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@cloudinary/url-gen": "^1.14.0",
-    "@nichoth/tonic": "^15.1.7",
+    "@bicycle-codes/tonic": "^15.1.7",
     "file-type": "^18.3.0",
     "preact": "^10.19.3",
     "sharp": "^0.32.1",
@@ -89,14 +89,14 @@
     "tonic",
     "preact"
   ],
-  "author": "nichoth <nichoth@gmail.com> (https://nichoth.com)",
+  "author": "nichoth <nichoth@nichoth.com> (https://nichoth.com)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nichoth/image.git"
+    "url": "git+https://github.com/bicycle-codes/image.git"
   },
   "bugs": {
-    "url": "https://github.com/nichoth/image/issues"
+    "url": "https://github.com/bicycle-codes/image/issues"
   },
-  "homepage": "https://github.com/nichoth/image#readme"
+  "homepage": "https://github.com/bicycle-codes/image#readme"
 }
