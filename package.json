@@ -47,7 +47,7 @@
     "eslint": "^8.57.0",
     "eslint-config-standard": "^17.1.0",
     "htm": "^3.1.1",
-    "postcss-import": "^15.1.0",
+    "postcss-import": "^16.1.0",
     "postcss-nesting": "^12.1.2",
     "tap-spec": "^5.0.0",
     "tape-run": "^11.0.0",
