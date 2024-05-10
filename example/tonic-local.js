@@ -1,4 +1,4 @@
-import Tonic from '@nichoth/tonic'
+import Tonic from '@bicycle-codes/tonic'
 import { ImageTag, BlurredImage } from '../dist/tonic'
 import '../dist/style.css'
 import './my-style.css'

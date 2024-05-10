@@ -1,5 +1,5 @@
 // @ts-check
-import Tonic from '@nichoth/tonic'
+import Tonic from '@bicycle-codes/tonic'
 import { defaultSrcset, getSrcset } from './srcset.js'
 
 /**

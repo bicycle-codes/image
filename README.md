@@ -1,6 +1,6 @@
 # image
-![tests](https://github.com/nichoth/image/actions/workflows/nodejs.yml/badge.svg)
-[![types](https://img.shields.io/npm/types/@nichoth/image)](README.md)
+![tests](https://github.com/bicycle-codes/image/actions/workflows/nodejs.yml/badge.svg)
+[![types](https://img.shields.io/npm/types/@bicycle-codes/image)](README.md)
 [![module](https://img.shields.io/badge/module-ESM%2FCJS-blue)](README.md)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
 
@@ -25,7 +25,7 @@ __See also__
 
 ## install
 ```
-npm i -S @nichoth/image
+npm i -S @bicycle-codes/image
 ```
 
 ## demonstration
@@ -91,8 +91,8 @@ Create an `<img>` element with a `srcset` attribute with relevant image sources.
 ```ts
 import { html } from 'htm/preact'
 import { render } from 'preact'
-import { CloudinaryImg } from '@nichoth/image/cloudinary/preact'
-import '@nichoth/image/style.css'
+import { CloudinaryImg } from '@bicycle-codes/image/cloudinary/preact'
+import '@bicycle-codes/image/style.css'
 import './my-style.css'
 
 //
@@ -127,8 +127,8 @@ Create an image with a *blur up* placeholder.
 ```js
 import { html } from 'htm/preact'
 import { render } from 'preact'
-import { CloudinaryImage } from '@nichoth/image/cloudinary/preact'
-import '@nichoth/image/css'
+import { CloudinaryImage } from '@bicycle-codes/image/cloudinary/preact'
+import '@bicycle-codes/image/css'
 import './my-style.css'
 
 const { BlurredImage } = CloudinaryImage({ cloudName: 'nichoth' })
@@ -158,8 +158,8 @@ This uses a naming convention for image files. If you are dealing with a file `m
 ```js
 import { html } from 'htm/preact'
 import { render } from 'preact'
-import { Image, BlurredImage } from '@nichoth/image/preact'
-import '@nichoth/image/style.css'
+import { Image, BlurredImage } from '@bicycle-codes/image/preact'
+import '@bicycle-codes/image/style.css'
 import './my-style.css'
 
 const placeholderImg = 'data:image/jpeg;base64,/9j/4AAQSkZJ...'
@@ -194,9 +194,9 @@ render(html`<${Example} />`, document.getElementById('root'))
 Create a [tonic](https://tonicframework.dev/) component for an `img` tag with a good defualt `srcset` attribute.
 
 ```js
-import Tonic from '@nichoth/tonic'
-import { CloudinaryTonic } from '@nichoth/image/cloudinary/tonic'
-import '@nichoth/image/style.css'
+import Tonic from '@bicycle-codes/tonic'
+import { CloudinaryTonic } from '@bicycle-codes/image/cloudinary/tonic'
+import '@bicycle-codes/image/style.css'
 import './my-style.css'
 
 const { ImageTag, BlurredImage } = CloudinaryTonic({ cloudName: 'nichoth' })
@@ -239,9 +239,9 @@ Create tonic components that link to locally hosted files.
 This uses a naming convention for image files. If you are dealing with a file `my-file.jpg`, then alternate resolutions should be named like `my-file-400.jpg`, `my-file-800.jpg`, etc, for versions that are `400` and `800` px wide.
 
 ```js
-import Tonic from '@nichoth/tonic'
-import { ImageTag, BlurredImage } from '@nichoth/image/tonic'
-import '@nichoth/image/style.css'
+import Tonic from '@bicycle-codes/tonic'
+import { ImageTag, BlurredImage } from '@bicycle-codes/image/tonic'
+import '@bicycle-codes/image/style.css'
 import './my-style.css'
 
 const placeholderImg = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/...'
@@ -287,7 +287,7 @@ This uses a naming convention for image files. If you are dealing with a file `m
 
 ```js
 // node js
-import { html } from '@nichoth/image'
+import { html } from '@bicycle-codes/image'
 
 const markup = html({
     filename: '/aaa.jpg',
@@ -312,7 +312,7 @@ console.log(markup)
 
 ### HTML with cloudinary
 ```js
-import { CloudinaryImage } from '@nichoth/image/cloudinary'
+import { CloudinaryImage } from '@bicycle-codes/image/cloudinary'
 
 // pass in your cloudinary name
 const { Image } = CloudinaryImage('nichoth')
@@ -334,7 +334,7 @@ Use the CLI to generate a small base64 encoded image to use as a blurry placehol
 
 First install this locally
 ```bash
-npm i -S @nichoth/image
+npm i -S @bicycle-codes/image
 ```
 
 Then call the node binary file included, aliased locally as `image.stringify`.
@@ -371,7 +371,7 @@ npx image.stringify my-cloud-name my-filename.jpg > ./my-filename.base64
 Use the exported functions `getImgFile` and `getImgCloudinary` to create base64 encoded strings in node.
 
 ```js
-import { getImgFile, getImgCloudinary } from '@nichoth/image/bin/to-string'
+import { getImgFile, getImgCloudinary } from '@bicycle-codes/image/bin/to-string'
 
 const base64FromLocalFile = getImgFile('./file.jpg')
 
@@ -389,7 +389,7 @@ Create multiple resolutions of a single source image. This is suitable for the d
 
 First install locally:
 ```bash
-npm i -S @nichoth/image
+npm i -S @bicycle-codes/image
 ```
 
 Then run via `npx`
@@ -403,7 +403,7 @@ This will create 4 files in the output directory -- `file-480.jpg`, `file-768.jp
 Or use this in node
 
 ```js
-import { resize, defaultSizes } from '@nichoth/image/resize'
+import { resize, defaultSizes } from '@bicycle-codes/image/resize'
 
 // (filename, outputDir, sizes) {
 await resize('./my-file.jpg', './output-dir', defaultSizes)
