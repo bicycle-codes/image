@@ -7,8 +7,14 @@ import { defaultSrcset, getSrcset } from './srcset.js'
  */
 export class ImageTag extends Tonic {
     render () {
-        const { className, filename, decoding,
-            loading, fetchpriority, sources } = this.props
+        const {
+            className,
+            filename,
+            decoding,
+            loading,
+            fetchpriority,
+            sources
+        } = this.props
         const sizes = this.props.sizes || ['100vw']
         const _class = (this.props.class || className)
 

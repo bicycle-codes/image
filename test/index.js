@@ -1,5 +1,5 @@
 // @ts-check
-import { test } from '@nichoth/tapzero'
+import { test } from '@bicycle-codes/tapzero'
 import { Cloudinary } from '@cloudinary/url-gen'
 import { html } from '../dist/index.js'
 import { CloudinaryImage } from '../dist/cloudinary/index.js'

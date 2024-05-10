@@ -1,5 +1,5 @@
 // @ts-check
-import { test } from '@nichoth/tapzero'
+import { test } from '@bicycle-codes/tapzero'
 import { execSync } from 'child_process'
 import * as fs from 'node:fs'
 import path from 'node:path'

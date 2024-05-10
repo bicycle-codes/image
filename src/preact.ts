@@ -10,14 +10,20 @@ import { defaultSrcset, getSrcset } from './srcset.js'
 // 100.jpg is 750 × 600
 
 export const Image:FunctionComponent<Props> = function (config:Props) {
-    // `sizes` is the sizes attribute/query
-    const { decoding, filename, alt, loading, fetchpriority,
-        className, srcset } = config
+    const {
+        decoding,
+        filename,
+        alt,
+        loading,
+        fetchpriority,
+        className,
+        srcset
+    } = config
     const sizes = config.sizes || ['100vw']
 
     // const defaultSizes = [1024, 768, 480]
 
-    // @ts-ignore -- don't know why we need to do this. It's for `fetchpriority`.
+    // @ts-expect-error ???
     return h('img', {
         class: config.class || className,
         srcset: (srcset ?

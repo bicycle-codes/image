@@ -11,9 +11,9 @@
   "scripts": {
     "start": "npm run build && ./bin/resize.js ./example/100.jpg -o ./example && cd example && rm -rf ./node_modules && npm i && npm start",
     "build-example": "npm run build && ./bin/resize.js ./example/100.jpg -o ./example && cd example && rm -rf ./node_modules && npm i && npx vite build && cp ./100* ./dist",
-    "lint": "standardx -v \"./**/*.ts\"",
-    "test": "npm run lint && node test/cli.js | tap-arc && npm run test-html",
-    "test-html": "npm run lint && node test/index.js | tap-arc",
+    "lint": "eslint \"./**/*.{ts,js}\"",
+    "test": "npm run lint && node test/cli.js | tap-spec && npm run test-html",
+    "test-html": "npm run lint && node test/index.js | tap-spec",
     "build-cjs": "esbuild src/**/*.ts --tsconfig=tsconfig.build.json --format=cjs --keep-names --outdir=./dist --out-extension:.js=.cjs",
     "build-bin": "mkdir -p ./dist/bin && rm -rf ./dist/bin/* && cp ./bin/to-string.js ./bin/resize.js ./dist/bin",
     "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && tsc --project tsconfig.build.json && npm run cp-css && npm run build-tonic && npm run build-bin",
@@ -37,18 +37,21 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@nichoth/tapzero": "^0.8.4",
+    "@bicycle-codes/tapzero": "^0.9.3",
     "@types/yargs": "^17.0.24",
-    "@typescript-eslint/parser": "^5.55.0",
-    "esbuild": "^0.19.9",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
+    "@typescript-eslint/parser": "^7.6.0",
+    "auto-changelog": "^2.4.0",
+    "esbuild": "^0.21.1",
+    "eslint": "^8.57.0",
+    "eslint-config-standard": "^17.1.0",
     "htm": "^3.1.1",
     "postcss-import": "^15.1.0",
-    "postcss-nesting": "^11.2.2",
-    "standardx": "^7.0.0",
-    "tap-arc": "^1.2.2",
+    "postcss-nesting": "^12.1.2",
+    "tap-spec": "^5.0.0",
     "tape-run": "^11.0.0",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.7"
+    "typescript": "^5.4.4",
+    "vite": "^5.2.10"
   },
   "exports": {
     ".": {
