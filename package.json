@@ -20,6 +20,7 @@
     "build-tonic": "cp ./src/cloudinary/tonic.js ./dist/cloudinary && cp ./src/tonic.js ./dist",
     "cp-css": "cp ./src/*.css ./dist",
     "preversion": "npm run lint",
+    "version": "auto-changelog -p --template keepachangelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md",
     "postversion": "git push && git push --tags && npm publish",
     "prepublishOnly": "npm run build"
   },
