@@ -4,6 +4,14 @@
 [![module](https://img.shields.io/badge/module-ESM%2FCJS-blue)](README.md)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
 
+Create responsive image tags.
+
+## install
+```
+npm i -S @bicycle-codes/image
+```
+
+## use
 Create responsive `img` tags, with a `srcset` property that allows browsers to download the best size image. Optionally, create a small, blurry image as a placeholder for the image with the [blur up technique](https://css-tricks.com/the-blur-up-technique-for-loading-background-images/).
 
 You need to define two things -- a list of sizes of images that are available:
@@ -22,11 +30,6 @@ __See also__
 
 [The links to articles](#some-links)
 
-
-## install
-```
-npm i -S @bicycle-codes/image
-```
 
 ## demonstration
 [See a demonstration of this](https://nichoth-image.netlify.app/), with the `tonic` components.
@@ -153,8 +156,11 @@ const Example = function () {
 ### preact + local files
 Create an `img` tag that links to locally hosted files. See [the CLI section](#base64-cli) for info on creating images of different sizes.
 
-**note**
-This uses a naming convention for image files. If you are dealing with a file `my-file.jpg`, then alternate resolutions should be named like `my-file-400.jpg`, `my-file-800.jpg`, etc, for versions that are `400` and `800` px wide.
+> [!NOTE]  
+> This uses a naming convention for image files. If you are dealing with a file
+> `my-file.jpg`, then alternate resolutions should be named like
+> `my-file-400.jpg`, `my-file-800.jpg`, etc, for versions that are
+> `400` and `800` px wide.
 
 ```js
 import { html } from 'htm/preact'
