@@ -33,8 +33,9 @@ npm i -S @bicycle-codes/image
 
 ![Demo](docs/image.png)
 
-**note**
-Use the dev tools to throttle the internet speed, and load in a mobile view. You should see that the requests are made for a smaller version of the image.
+> [!NOTE]  
+> Use the dev tools to throttle the internet speed, and load in a mobile view.
+> You should see that the requests are made for a smaller version of the image.
 
 ## develop
 * build consumable files: `npm run build`
