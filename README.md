@@ -14,6 +14,10 @@ npm i -S @bicycle-codes/image
 ## use
 Create responsive `img` tags, with a `srcset` property that allows browsers to download the best size image. Optionally, create a small, blurry image as a placeholder for the image with the [blur up technique](https://css-tricks.com/the-blur-up-technique-for-loading-background-images/).
 
+See [MDN docs on responsive images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images#resolution_switching_different_sizes)
+
+> We want to display identical image content, just larger or smaller depending on the device
+
 You need to define two things -- a list of sizes of images that are available:
 ```js
 [300, 600, 900]
@@ -493,7 +497,10 @@ So `sizes` tells us which image to choose based on screen size.
 
 -------
 
+## See also
+
 * [Using the srcset and sizes attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#using_the_srcset_and_sizes_attributes)
 * [Responsive images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images)
 * [Responsive Images: If you’re just changing resolutions, use srcset.](https://css-tricks.com/responsive-images-youre-just-changing-resolutions-use-srcset/)
-* [Don’t use <picture> (most of the time)](https://cloudfour.com/thinks/dont-use-picture-most-of-the-time/)
+* [Don’t use `<picture>` (most of the time)](https://cloudfour.com/thinks/dont-use-picture-most-of-the-time/)
+* [industrialempathy.com/posts/image-optimizations](https://www.industrialempathy.com/posts/image-optimizations/)
