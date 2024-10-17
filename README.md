@@ -10,7 +10,40 @@
 Create responsive image tags.
 
 <details><summary><h2>Contents</h2></summary>
+
 <!-- toc -->
+
+- [install](#install)
+- [use](#use)
+- [demonstration](#demonstration)
+- [develop](#develop)
+- [test](#test)
+- [examples](#examples)
+- [preact](#preact)
+  * [preact + cloudinary](#preact--cloudinary)
+  * [preact + cloudinary -- blur up image](#preact--cloudinary----blur-up-image)
+  * [preact + local files](#preact--local-files)
+- [tonic](#tonic)
+  * [tonic + cloudinary](#tonic--cloudinary)
+  * [tonic + local files](#tonic--local-files)
+- [HTML](#html)
+  * [HTML with local files](#html-with-local-files)
+  * [HTML with cloudinary](#html-with-cloudinary)
+- [base64 placeholders](#base64-placeholders)
+  * [base64 CLI](#base64-cli)
+  * [node](#node)
+- [resizing images](#resizing-images)
+  * [node](#node-1)
+- [some links](#some-links)
+- [bonus](#bonus)
+  * [sizes](#sizes)
+  * [better performace](#better-performace)
+  * [format](#format)
+  * [`srcset` + `sizes`](#srcset--sizes)
+- [See also](#see-also)
+
+<!-- tocstop -->
+
 </details>
 
 ## install
