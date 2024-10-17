@@ -16,5 +16,12 @@ export default defineConfig({
         port: 8888,
         host: true,
         open: true,
+    },
+    build: {
+        target: 'esnext',
+        minify: false,
+        outDir: './public',
+        emptyOutDir: true,
+        sourcemap: 'inline'
     }
 })
