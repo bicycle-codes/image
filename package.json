@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "npm run build && ./bin/resize.js ./example/100.jpg -o ./example && cd example && rm -rf ./node_modules && npm i && npm start",
-    "build-example": "npm run build && ./bin/resize.js ./example/100.jpg -o ./example && cd example && rm -rf ./node_modules && npm i && npx vite build && cp ./100* ./dist",
+    "build-example": "npm run build && ./bin/resize.js ./example/100.jpg -o ./example && cd example && rm -rf ./node_modules && npm ci && VITE_DEBUG_MODE=staging vite build --mode staging --base=\"/image\" && mkdir -p ./public && cp ./100* ./public",
     "lint": "eslint \"./**/*.{ts,js}\"",
     "test": "npm run lint && node test/cli.js | tap-spec && npm run test-html",
     "test-html": "npm run lint && node test/index.js | tap-spec",
@@ -19,8 +19,9 @@
     "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && tsc --project tsconfig.build.json && npm run cp-css && npm run build-tonic && npm run build-bin",
     "build-tonic": "cp ./src/cloudinary/tonic.js ./dist/cloudinary && cp ./src/tonic.js ./dist",
     "cp-css": "cp ./src/*.css ./dist",
+    "toc": "markdown-toc --maxdepth 3 -i README.md",
     "preversion": "npm run lint",
-    "version": "auto-changelog -p --template keepachangelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md",
+    "version": "npm run toc && auto-changelog -p --template keepachangelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md README.md",
     "postversion": "git push && git push --tags && npm publish",
     "prepublishOnly": "npm run build"
   },
@@ -47,6 +48,7 @@
     "eslint": "^8.57.0",
     "eslint-config-standard": "^17.1.0",
     "htm": "^3.1.1",
+    "markdown-toc": "^1.2.0",
     "postcss-import": "^16.1.0",
     "postcss-nesting": "^13.0.0",
     "tap-spec": "^5.0.0",

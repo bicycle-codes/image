@@ -2,12 +2,20 @@
 ![tests](https://github.com/bicycle-codes/image/actions/workflows/nodejs.yml/badge.svg)
 [![types](https://img.shields.io/npm/types/@bicycle-codes/image)](README.md)
 [![module](https://img.shields.io/badge/module-ESM%2FCJS-blue)](README.md)
+[![semantic versioning](https://img.shields.io/badge/semver-2.0.0-blue?logo=semver&style=flat-square)](https://semver.org/)
+[![Common Changelog](https://nichoth.github.io/badge/common-changelog.svg)](./CHANGELOG.md)
+[![install size](https://packagephobia.com/badge?p=@bicycle-codes/image)](https://packagephobia.com/result?p=@bicycle-codes/image)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
 
 Create responsive image tags.
 
+<details><summary><h2>Contents</h2></summary>
+<!-- toc -->
+</details>
+
 ## install
-```
+
+```sh
 npm i -S @bicycle-codes/image
 ```
 
