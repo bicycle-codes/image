@@ -4,5 +4,6 @@
         "start": "rm -rf ./node_modules package-lock.json && npm i && vite --open"
     },
     "dependencies": {
+        "vite": "^5.4.9"
     }
 }
