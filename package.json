@@ -54,7 +54,7 @@
     "tap-spec": "^5.0.0",
     "tape-run": "^11.0.0",
     "typescript": "^5.4.4",
-    "vite": "^5.4.9"
+    "vite": "^6.0.1"
   },
   "exports": {
     ".": {
