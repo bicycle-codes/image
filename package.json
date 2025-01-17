@@ -33,7 +33,7 @@
   "dependencies": {
     "@bicycle-codes/tonic": "^16.0.2",
     "@cloudinary/url-gen": "^1.14.0",
-    "file-type": "^19.0.0",
+    "file-type": "^20.0.0",
     "preact": "^10.19.3",
     "sharp": "^0.33.3",
     "yargs": "^17.7.2"
